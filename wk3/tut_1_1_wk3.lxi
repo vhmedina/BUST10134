@@ -1,0 +1,18 @@
+B 3 C o m p i l a t i o n
+B 62 Equation Listing    SOLVE transport1 Using LP From line 48
+D 65 of
+D 70 cap_constr
+D 77 dem_constr
+B 87 Column Listing      SOLVE transport1 Using LP From line 48
+E 90 z
+E 97 x
+B 120 Model Statistics    SOLVE transport1 Using LP From line 48
+B 136 Solution Report     SOLVE transport1 Using LP From line 48
+F 165 of
+F 169 cap_constr
+F 176 dem_constr
+G 186 z
+G 190 x
+B 207 E x e c u t i o n
+I 207 x
+I 216 x

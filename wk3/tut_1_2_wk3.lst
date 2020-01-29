@@ -1,0 +1,254 @@
+GAMS 28.2.0  r750fa45 Released Aug 19, 2019 DEX-DEG x86 64bit/Mac OS X - 10/02/19 11:20:04 Page 1
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+C o m p i l a t i o n
+
+
+   1  * Define the indeces or sets
+   2  Sets
+   3  i manufacturers               /Arnold, Supershelf/
+   4  j industries /Zeron_N, Zeron_S/
+   5  m customers /Zrox, Hewes, Rockrite/;
+   6   
+   7  * Define the data (parameters, tables, scalars)
+   8  Parameter a(i) max supply for each manufacturer
+   9  /
+  10  Arnold 75
+  11  Supershelf 75
+  12  /
+  13  ;
+  14   
+  15  Parameter b(m) demand for each customer
+  16  /
+  17  Zrox 50
+  18  Hewes  60
+  19  Rockrite 40
+  20  /
+  21  ;
+  22   
+  23  Table c(i,j, m) Shipping cost
+  24                      Zrox    Hewes   Rockrite
+  25  Arnold.Zeron_N       6       10      13
+  26  Arnold.Zeron_S      11       12      12
+  27  Supershelf.Zeron_N   8       12      15
+  28  Supershelf.Zeron_S   7        8       8
+  29  ;
+  30   
+  31  * Define variables
+  32  Variables
+  33  z       total cost
+  34  x(i,j, m)  quantity of products shipped from i, distrib from j to m
+  35  Positive variables x;
+  36   
+  37  * Define constrains and objective function
+  38  Equations
+  39      of              objective function for the problem
+  40      cap_constr      supply constraint
+  41      dem_constr      demand constraint;
+  42   
+  43  of..                z =e= sum((i,j, m), c(i,j, m)*x(i,j,m));
+  44  cap_constr(i)..     sum((j, m), x(i,j, m)) =l= a(i);
+  45  dem_constr(m)..     sum((i,j), x(i,j,m)) =e= b(m);
+  46   
+  47  * declare model and assign equations (in this case use all of them)
+  48  Model transport2 /all/;
+  49   
+  50  * Call solver
+  51  Solve transport2 using lp minimizing z;
+  52   
+  53  * print final levels and marginal cost
+  54  Display x.l, x.m;
+
+**** LIST OF STRAY NAMES - CHECK DECLARATIONS FOR SPURIOUS COMMAS
+**** STRAY NAME distrib OF TYPE VAR  
+
+
+COMPILATION TIME     =        0.001 SECONDS      3 MB  28.2.0 r750fa45 DEX-DEG
+GAMS 28.2.0  r750fa45 Released Aug 19, 2019 DEX-DEG x86 64bit/Mac OS X - 10/02/19 11:20:04 Page 2
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Equation Listing    SOLVE transport2 Using LP From line 51
+
+
+---- of  =E=  objective function for the problem
+
+of..  z - 6*x(Arnold,Zeron_N,Zrox) - 10*x(Arnold,Zeron_N,Hewes) - 13*x(Arnold,Zeron_N,Rockrite) - 11*x(Arnold,Zeron_S,Zrox) - 12*x(Arnold,Zeron_S,Hewes) - 12*x(Arnold,Zeron_S,Rockrite) - 8*x(Supershelf,Zeron_N,Zrox) - 12*x(Supershelf,Zeron_N,Hewes)
+     
+      - 15*x(Supershelf,Zeron_N,Rockrite) - 7*x(Supershelf,Zeron_S,Zrox) - 8*x(Supershelf,Zeron_S,Hewes) - 8*x(Supershelf,Zeron_S,Rockrite) =E= 0 ; (LHS = 0)
+     
+
+---- cap_constr  =L=  supply constraint
+
+cap_constr(Arnold)..  x(Arnold,Zeron_N,Zrox) + x(Arnold,Zeron_N,Hewes) + x(Arnold,Zeron_N,Rockrite) + x(Arnold,Zeron_S,Zrox) + x(Arnold,Zeron_S,Hewes) + x(Arnold,Zeron_S,Rockrite) =L= 75 ; (LHS = 0)
+     
+cap_constr(Supershelf)..  x(Supershelf,Zeron_N,Zrox) + x(Supershelf,Zeron_N,Hewes) + x(Supershelf,Zeron_N,Rockrite) + x(Supershelf,Zeron_S,Zrox) + x(Supershelf,Zeron_S,Hewes) + x(Supershelf,Zeron_S,Rockrite) =L= 75 ; (LHS = 0)
+     
+
+---- dem_constr  =E=  demand constraint
+
+dem_constr(Zrox)..  x(Arnold,Zeron_N,Zrox) + x(Arnold,Zeron_S,Zrox) + x(Supershelf,Zeron_N,Zrox) + x(Supershelf,Zeron_S,Zrox) =E= 50 ; (LHS = 0, INFES = 50 ****)
+     
+dem_constr(Hewes)..  x(Arnold,Zeron_N,Hewes) + x(Arnold,Zeron_S,Hewes) + x(Supershelf,Zeron_N,Hewes) + x(Supershelf,Zeron_S,Hewes) =E= 60 ; (LHS = 0, INFES = 60 ****)
+     
+dem_constr(Rockrite)..  x(Arnold,Zeron_N,Rockrite) + x(Arnold,Zeron_S,Rockrite) + x(Supershelf,Zeron_N,Rockrite) + x(Supershelf,Zeron_S,Rockrite) =E= 40 ; (LHS = 0, INFES = 40 ****)
+     
+GAMS 28.2.0  r750fa45 Released Aug 19, 2019 DEX-DEG x86 64bit/Mac OS X - 10/02/19 11:20:04 Page 3
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Column Listing      SOLVE transport2 Using LP From line 51
+
+
+---- z  total cost
+
+z
+                (.LO, .L, .UP, .M = -INF, 0, +INF, 0)
+        1       of
+
+
+---- x  quantity of products shipped from i
+
+x(Arnold,Zeron_N,Zrox)
+                (.LO, .L, .UP, .M = 0, 0, +INF, 0)
+       -6       of
+        1       cap_constr(Arnold)
+        1       dem_constr(Zrox)
+
+x(Arnold,Zeron_N,Hewes)
+                (.LO, .L, .UP, .M = 0, 0, +INF, 0)
+      -10       of
+        1       cap_constr(Arnold)
+        1       dem_constr(Hewes)
+
+x(Arnold,Zeron_N,Rockrite)
+                (.LO, .L, .UP, .M = 0, 0, +INF, 0)
+      -13       of
+        1       cap_constr(Arnold)
+        1       dem_constr(Rockrite)
+
+REMAINING 9 ENTRIES SKIPPED
+GAMS 28.2.0  r750fa45 Released Aug 19, 2019 DEX-DEG x86 64bit/Mac OS X - 10/02/19 11:20:04 Page 4
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Model Statistics    SOLVE transport2 Using LP From line 51
+
+
+MODEL STATISTICS
+
+BLOCKS OF EQUATIONS           3     SINGLE EQUATIONS            6
+BLOCKS OF VARIABLES           2     SINGLE VARIABLES           13
+NON ZERO ELEMENTS            37
+
+
+GENERATION TIME      =        0.011 SECONDS      4 MB  28.2.0 r750fa45 DEX-DEG
+
+
+EXECUTION TIME       =        0.012 SECONDS      4 MB  28.2.0 r750fa45 DEX-DEG
+GAMS 28.2.0  r750fa45 Released Aug 19, 2019 DEX-DEG x86 64bit/Mac OS X - 10/02/19 11:20:04 Page 5
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE transport2 Using LP From line 51
+
+
+               S O L V E      S U M M A R Y
+
+     MODEL   transport2          OBJECTIVE  z
+     TYPE    LP                  DIRECTION  MINIMIZE
+     SOLVER  CPLEX               FROM LINE  51
+
+**** SOLVER STATUS     1 Normal Completion         
+**** MODEL STATUS      1 Optimal                   
+**** OBJECTIVE VALUE             1150.0000
+
+ RESOURCE USAGE, LIMIT          0.037      1000.000
+ ITERATION COUNT, LIMIT         1    2000000000
+
+IBM ILOG CPLEX   28.2.0 r750fa45 Released Aug 19, 2019 DEG x86 64bit/Mac OS X 
+Cplex 12.9.0.0
+
+Space for names approximately 0.00 Mb
+Use option 'names no' to turn use of names off
+LP status(1): optimal
+Cplex Time: 0.01sec (det. 0.01 ticks)
+Optimal solution found.
+Objective :        1150.000000
+
+
+                           LOWER          LEVEL          UPPER         MARGINAL
+
+---- EQU of                  .              .              .             1.0000      
+
+  of  objective function for the problem
+
+---- EQU cap_constr  supply constraint
+
+                  LOWER          LEVEL          UPPER         MARGINAL
+
+Arnold            -INF           75.0000        75.0000          .          
+Supershelf        -INF           75.0000        75.0000        -2.0000      
+
+---- EQU dem_constr  demand constraint
+
+                LOWER          LEVEL          UPPER         MARGINAL
+
+Zrox            50.0000        50.0000        50.0000         6.0000      
+Hewes           60.0000        60.0000        60.0000        10.0000      
+Rockrite        40.0000        40.0000        40.0000        10.0000      
+
+                           LOWER          LEVEL          UPPER         MARGINAL
+
+---- VAR z                 -INF         1150.0000        +INF             .          
+
+  z  total cost
+
+---- VAR x  quantity of products shipped from i
+
+                                   LOWER          LEVEL          UPPER         MARGINAL
+
+Arnold    .Zeron_N.Zrox              .            50.0000        +INF             .          
+Arnold    .Zeron_N.Hewes             .            25.0000        +INF             .          
+Arnold    .Zeron_N.Rockrite          .              .            +INF            3.0000      
+Arnold    .Zeron_S.Zrox              .              .            +INF            5.0000      
+Arnold    .Zeron_S.Hewes             .              .            +INF            2.0000      
+Arnold    .Zeron_S.Rockrite          .              .            +INF            2.0000      
+Supershelf.Zeron_N.Zrox              .              .            +INF            4.0000      
+Supershelf.Zeron_N.Hewes             .              .            +INF            4.0000      
+Supershelf.Zeron_N.Rockrite          .              .            +INF            7.0000      
+Supershelf.Zeron_S.Zrox              .              .            +INF            3.0000      
+Supershelf.Zeron_S.Hewes             .            35.0000        +INF             .          
+Supershelf.Zeron_S.Rockrite          .            40.0000        +INF             .          
+
+
+**** REPORT SUMMARY :        0     NONOPT
+                             0 INFEASIBLE
+                             0  UNBOUNDED
+GAMS 28.2.0  r750fa45 Released Aug 19, 2019 DEX-DEG x86 64bit/Mac OS X - 10/02/19 11:20:04 Page 6
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+E x e c u t i o n
+
+
+----     54 VARIABLE x.L  quantity of products shipped from i
+
+                          Zrox       Hewes    Rockrite
+
+Arnold    .Zeron_N      50.000      25.000
+Supershelf.Zeron_S                  35.000      40.000
+
+
+----     54 VARIABLE x.M  quantity of products shipped from i
+
+                          Zrox       Hewes    Rockrite
+
+Arnold    .Zeron_N                               3.000
+Arnold    .Zeron_S       5.000       2.000       2.000
+Supershelf.Zeron_N       4.000       4.000       7.000
+Supershelf.Zeron_S       3.000
+
+
+
+EXECUTION TIME       =        0.001 SECONDS      3 MB  28.2.0 r750fa45 DEX-DEG
+
+
+USER: Course License Advanced Analytics with MathematG190618/0001AO-GEN
+      The University of Edinburgh - Business School               DCE66
+      License for teaching and research at degree granting institutions
+
+
+**** FILE SUMMARY
+
+Input      /Users/victor_medina/OneDrive - University of Edinburgh/CMSE11356/wk3/tut_1_2_wk3.gms
+Output     /Users/victor_medina/OneDrive - University of Edinburgh/CMSE11356/wk3/tut_1_2_wk3.lst
