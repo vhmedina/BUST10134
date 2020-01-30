@@ -1,0 +1,20 @@
+--- Job tut_1_1_wk3.gms Start 01/30/20 15:05:48 30.1.0 re01a340 DEX-DEG x86 64bit/Mac OS X
+--- GAMS Parameters defined
+    Input /Users/victor_medina/OneDrive - University of Edinburgh/Tutorials/BUST10134/wk3/tut_1_1_wk3.gms
+    PageSize 0
+    ScrDir /Users/victor_medina/OneDrive - University of Edinburgh/Tutorials/BUST10134/wk3/225a/
+    SysDir /Applications/GAMS30.1/GAMS Terminal.app/Contents/MacOS/
+    LogOption 3
+    ErrMsg 1
+    ErrorLog 99
+    IDE 1
+    LstTitleLeftAligned 1
+GAMS 30.1.0   Copyright (C) 1987-2020 GAMS Development. All rights reserved
+****
+**** No license specified and no gamslice.txt in system directory
+****
+*** Status: Terminated due to a licensing error
+***         Request a demo license at www.gams.com/download
+***         Inspect listing file for more information
+--- Job tut_1_1_wk3.gms Stop 01/30/20 15:05:48 elapsed 0:00:00.003
+

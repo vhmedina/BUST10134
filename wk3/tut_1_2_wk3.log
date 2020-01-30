@@ -1,34 +1,33 @@
---- Job tut_1_2_wk3.gms Start 10/02/19 11:20:04 28.2.0 r750fa45 DEX-DEG x86 64bit/Mac OS X
+--- Job tut_1_2_wk3.gms Start 01/30/20 15:12:15 30.1.0 re01a340 DEX-DEG x86 64bit/Mac OS X
 --- GAMS Parameters defined
-    Input /Users/victor_medina/OneDrive - University of Edinburgh/CMSE11356/wk3/tut_1_2_wk3.gms
+    Input /Users/victor_medina/OneDrive - University of Edinburgh/Tutorials/BUST10134/wk3/tut_1_2_wk3.gms
     PageSize 0
-    ScrDir /Users/victor_medina/OneDrive - University of Edinburgh/CMSE11356/wk3/225a/
-    SysDir /Applications/GAMS28.2/sysdir/
+    ScrDir /Users/victor_medina/OneDrive - University of Edinburgh/Tutorials/BUST10134/wk3/225a/
+    SysDir /Applications/GAMS30.1/GAMS Terminal.app/Contents/MacOS/
     LogOption 3
     ErrMsg 1
     ErrorLog 99
     IDE 1
     LstTitleLeftAligned 1
-GAMS 28.2.0   Copyright (C) 1987-2019 GAMS Development. All rights reserved
+GAMS 30.1.0   Copyright (C) 1987-2020 GAMS Development. All rights reserved
 Licensee: Course License Advanced Analytics with MathematG190618/0001AO-GEN
           The University of Edinburgh - Business School               DCE66
-          License for teaching and research at degree granting institutions
-          License Admin: Douglas Alem, douglas.alem@ed.ac.uk               
+          Course license for use within the course and related course work
 --- Starting compilation
 --- tut_1_2_wk3.gms(54) 3 Mb
---- Starting execution: elapsed 0:00:00.006
+--- Starting execution: elapsed 0:00:00.004
 --- Generating LP model transport2
 --- tut_1_2_wk3.gms(51) 4 Mb
 ---   6 rows  13 columns  37 non-zeroes
---- Executing CPLEX: elapsed 0:00:00.017
-
-IBM ILOG CPLEX   28.2.0 r750fa45 Released Aug 19, 2019 DEG x86 64bit/Mac OS X 
-Cplex 12.9.0.0
-
+--- Executing CPLEX: elapsed 0:00:00.010
+IBM ILOG CPLEX   30.1.0 re01a340 Released Jan 10, 2020 DEG x86 64bit/Mac OS X 
+--- GAMS/Cplex licensed for continuous and discrete problems.
+Cplex 12.10.0.0
 Reading data...
 Starting Cplex...
 Space for names approximately 0.00 Mb
 Use option 'names no' to turn use of names off
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
 CPXPARAM_Advance                                 0
 CPXPARAM_Simplex_Display                         2
 CPXPARAM_Threads                                 1
@@ -41,19 +40,17 @@ LP Presolve eliminated 2 rows and 7 columns.
 Aggregator did 3 substitutions.
 Reduced LP has 1 rows, 3 columns, and 3 nonzeros.
 Presolve time = 0.00 sec. (0.01 ticks)
-
 Iteration      Dual Objective            In Variable           Out Variable
      1            1150.000000x(Supershelf.Zeron_S.Hecap_constr(Arnold artif
 LP status(1): optimal
-Cplex Time: 0.01sec (det. 0.01 ticks)
-
+Cplex Time: 0.00sec (det. 0.01 ticks)
 Optimal solution found.
 Objective :        1150.000000
-
 --- Restarting execution
 --- tut_1_2_wk3.gms(51) 2 Mb
 --- Reading solution for model transport2
---- Executing after solve: elapsed 0:00:00.101
+--- Executing after solve: elapsed 0:00:00.061
 --- tut_1_2_wk3.gms(54) 3 Mb
 *** Status: Normal completion
---- Job tut_1_2_wk3.gms Stop 10/02/19 11:20:04 elapsed 0:00:00.102
+--- Job tut_1_2_wk3.gms Stop 01/30/20 15:12:15 elapsed 0:00:00.061
+

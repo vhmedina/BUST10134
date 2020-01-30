@@ -8,11 +8,11 @@ E 90 z
 E 97 x
 B 120 Model Statistics    SOLVE transport1 Using LP From line 48
 B 136 Solution Report     SOLVE transport1 Using LP From line 48
-F 165 of
-F 169 cap_constr
-F 176 dem_constr
-G 186 z
-G 190 x
-B 207 E x e c u t i o n
-I 207 x
-I 216 x
+F 166 of
+F 170 cap_constr
+F 177 dem_constr
+G 187 z
+G 191 x
+B 208 E x e c u t i o n
+I 208 x
+I 217 x
