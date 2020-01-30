@@ -1,4 +1,4 @@
---- Job tut_1_2_wk3.gms Start 10/02/19 11:20:04 28.2.0 r750fa45 DEX-DEG x86 64bit/Mac OS X
+--- Job tut_1_2_wk3.gms Start 10/02/19 11:16:55 28.2.0 r750fa45 DEX-DEG x86 64bit/Mac OS X
 --- GAMS Parameters defined
     Input /Users/victor_medina/OneDrive - University of Edinburgh/CMSE11356/wk3/tut_1_2_wk3.gms
     PageSize 0
@@ -16,11 +16,11 @@ Licensee: Course License Advanced Analytics with MathematG190618/0001AO-GEN
           License Admin: Douglas Alem, douglas.alem@ed.ac.uk               
 --- Starting compilation
 --- tut_1_2_wk3.gms(54) 3 Mb
---- Starting execution: elapsed 0:00:00.006
+--- Starting execution: elapsed 0:00:00.008
 --- Generating LP model transport2
 --- tut_1_2_wk3.gms(51) 4 Mb
 ---   6 rows  13 columns  37 non-zeroes
---- Executing CPLEX: elapsed 0:00:00.017
+--- Executing CPLEX: elapsed 0:00:00.020
 
 IBM ILOG CPLEX   28.2.0 r750fa45 Released Aug 19, 2019 DEG x86 64bit/Mac OS X 
 Cplex 12.9.0.0
@@ -43,17 +43,17 @@ Reduced LP has 1 rows, 3 columns, and 3 nonzeros.
 Presolve time = 0.00 sec. (0.01 ticks)
 
 Iteration      Dual Objective            In Variable           Out Variable
-     1            1150.000000x(Supershelf.Zeron_S.Hecap_constr(Arnold artif
+     1            2075.000000x(Supershelf.Zeron_S.Hecap_constr(Arnold artif
 LP status(1): optimal
 Cplex Time: 0.01sec (det. 0.01 ticks)
 
 Optimal solution found.
-Objective :        1150.000000
+Objective :        2075.000000
 
 --- Restarting execution
 --- tut_1_2_wk3.gms(51) 2 Mb
 --- Reading solution for model transport2
---- Executing after solve: elapsed 0:00:00.101
+--- Executing after solve: elapsed 0:00:00.118
 --- tut_1_2_wk3.gms(54) 3 Mb
 *** Status: Normal completion
---- Job tut_1_2_wk3.gms Stop 10/02/19 11:20:04 elapsed 0:00:00.102
+--- Job tut_1_2_wk3.gms Stop 10/02/19 11:16:55 elapsed 0:00:00.118

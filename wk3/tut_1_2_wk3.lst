@@ -1,13 +1,13 @@
-GAMS 30.1.0  re01a340 Released Jan 10, 2020 DEX-DEG x86 64bit/Mac OS X - 01/30/20 15:12:15 Page 1
+GAMS 30.1.0  re01a340 Released Jan 10, 2020 DEX-DEG x86 64bit/Mac OS X - 01/30/20 17:25:34 Page 1
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 C o m p i l a t i o n
 
 
    1  * Define the indeces or sets
    2  Sets
-   3  i manufacturers               /Arnold, Supershelf/
-   4  j industries /Zeron_N, Zeron_S/
-   5  m customers /Zrox, Hewes, Rockrite/;
+   3  i manufacturers     /Arnold, Supershelf/
+   4  j industries        /Zeron_N, Zeron_S/
+   5  m customers         /Zrox, Hewes, Rockrite/;
    6   
    7  * Define the data (parameters, tables, scalars)
    8  Parameter a(i) max supply for each manufacturer
@@ -63,7 +63,7 @@ C o m p i l a t i o n
 
 
 COMPILATION TIME     =        0.001 SECONDS      3 MB  30.1.0 re01a340 DEX-DEG
-GAMS 30.1.0  re01a340 Released Jan 10, 2020 DEX-DEG x86 64bit/Mac OS X - 01/30/20 15:12:15 Page 2
+GAMS 30.1.0  re01a340 Released Jan 10, 2020 DEX-DEG x86 64bit/Mac OS X - 01/30/20 17:25:34 Page 2
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Equation Listing    SOLVE transport2 Using LP From line 51
 
@@ -90,7 +90,7 @@ dem_constr(Hewes)..  x(Arnold,Zeron_N,Hewes) + x(Arnold,Zeron_S,Hewes) + x(Super
      
 dem_constr(Rockrite)..  x(Arnold,Zeron_N,Rockrite) + x(Arnold,Zeron_S,Rockrite) + x(Supershelf,Zeron_N,Rockrite) + x(Supershelf,Zeron_S,Rockrite) =E= 40 ; (LHS = 0, INFES = 40 ****)
      
-GAMS 30.1.0  re01a340 Released Jan 10, 2020 DEX-DEG x86 64bit/Mac OS X - 01/30/20 15:12:15 Page 3
+GAMS 30.1.0  re01a340 Released Jan 10, 2020 DEX-DEG x86 64bit/Mac OS X - 01/30/20 17:25:34 Page 3
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Column Listing      SOLVE transport2 Using LP From line 51
 
@@ -123,7 +123,7 @@ x(Arnold,Zeron_N,Rockrite)
         1       dem_constr(Rockrite)
 
 REMAINING 9 ENTRIES SKIPPED
-GAMS 30.1.0  re01a340 Released Jan 10, 2020 DEX-DEG x86 64bit/Mac OS X - 01/30/20 15:12:15 Page 4
+GAMS 30.1.0  re01a340 Released Jan 10, 2020 DEX-DEG x86 64bit/Mac OS X - 01/30/20 17:25:34 Page 4
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Model Statistics    SOLVE transport2 Using LP From line 51
 
@@ -139,7 +139,7 @@ GENERATION TIME      =        0.006 SECONDS      4 MB  30.1.0 re01a340 DEX-DEG
 
 
 EXECUTION TIME       =        0.006 SECONDS      4 MB  30.1.0 re01a340 DEX-DEG
-GAMS 30.1.0  re01a340 Released Jan 10, 2020 DEX-DEG x86 64bit/Mac OS X - 01/30/20 15:12:15 Page 5
+GAMS 30.1.0  re01a340 Released Jan 10, 2020 DEX-DEG x86 64bit/Mac OS X - 01/30/20 17:25:34 Page 5
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Solution Report     SOLVE transport2 Using LP From line 51
 
@@ -154,7 +154,7 @@ Solution Report     SOLVE transport2 Using LP From line 51
 **** MODEL STATUS      1 Optimal                   
 **** OBJECTIVE VALUE             1150.0000
 
- RESOURCE USAGE, LIMIT          0.010      1000.000
+ RESOURCE USAGE, LIMIT          0.009      1000.000
  ITERATION COUNT, LIMIT         1    2000000000
 
 IBM ILOG CPLEX   30.1.0 re01a340 Released Jan 10, 2020 DEG x86 64bit/Mac OS X 
@@ -217,7 +217,7 @@ Supershelf.Zeron_S.Rockrite          .            40.0000        +INF           
 **** REPORT SUMMARY :        0     NONOPT
                              0 INFEASIBLE
                              0  UNBOUNDED
-GAMS 30.1.0  re01a340 Released Jan 10, 2020 DEX-DEG x86 64bit/Mac OS X - 01/30/20 15:12:15 Page 6
+GAMS 30.1.0  re01a340 Released Jan 10, 2020 DEX-DEG x86 64bit/Mac OS X - 01/30/20 17:25:34 Page 6
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 E x e c u t i o n
 

@@ -1,8 +1,8 @@
 * Define the indeces or sets
 Sets
-i manufacturers               /Arnold, Supershelf/
-j industries /Zeron_N, Zeron_S/
-m customers /Zrox, Hewes, Rockrite/;
+i manufacturers     /Arnold, Supershelf/
+j industries        /Zeron_N, Zeron_S/
+m customers         /Zrox, Hewes, Rockrite/;
 
 * Define the data (parameters, tables, scalars)
 Parameter a(i) max supply for each manufacturer

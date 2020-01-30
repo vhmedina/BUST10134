@@ -1,4 +1,4 @@
---- Job tut_1_1_wk3.gms Start 01/30/20 15:06:40 30.1.0 re01a340 DEX-DEG x86 64bit/Mac OS X
+--- Job tut_1_1_wk3.gms Start 01/30/20 15:06:43 30.1.0 re01a340 DEX-DEG x86 64bit/Mac OS X
 --- GAMS Parameters defined
     Input /Users/victor_medina/OneDrive - University of Edinburgh/Tutorials/BUST10134/wk3/tut_1_1_wk3.gms
     PageSize 0
@@ -15,11 +15,11 @@ Licensee: Course License Advanced Analytics with MathematG190618/0001AO-GEN
           Course license for use within the course and related course work
 --- Starting compilation
 --- tut_1_1_wk3.gms(51) 3 Mb
---- Starting execution: elapsed 0:00:00.015
+--- Starting execution: elapsed 0:00:00.003
 --- Generating LP model transport1
 --- tut_1_1_wk3.gms(48) 4 Mb
 ---   6 rows  7 columns  19 non-zeroes
---- Executing CPLEX: elapsed 0:00:00.034
+--- Executing CPLEX: elapsed 0:00:00.008
 IBM ILOG CPLEX   30.1.0 re01a340 Released Jan 10, 2020 DEG x86 64bit/Mac OS X 
 --- GAMS/Cplex licensed for continuous and discrete problems.
 Cplex 12.10.0.0
@@ -47,8 +47,8 @@ Objective :       96000.000000
 --- Restarting execution
 --- tut_1_1_wk3.gms(48) 2 Mb
 --- Reading solution for model transport1
---- Executing after solve: elapsed 0:00:00.120
+--- Executing after solve: elapsed 0:00:00.060
 --- tut_1_1_wk3.gms(51) 3 Mb
 *** Status: Normal completion
---- Job tut_1_1_wk3.gms Stop 01/30/20 15:06:40 elapsed 0:00:00.120
+--- Job tut_1_1_wk3.gms Stop 01/30/20 15:06:43 elapsed 0:00:00.061
 

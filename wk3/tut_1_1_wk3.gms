@@ -7,7 +7,7 @@ j distribution centres /Edinburgh, Aberdeen, Newcastle/;
 Parameter a(i) capacity of each plant (L)
 /
 Manchester 20000
-Glasgow 15000
+Glasgow 15001
 /
 ;
 
