@@ -1,8 +1,8 @@
---- Job tut_1_2_wk3.gms Start 02/03/20 11:38:02 30.1.0 re01a340 DEX-DEG x86 64bit/Mac OS X
+--- Job tut_2_2_wk6.gms Start 02/26/20 14:29:06 30.1.0 re01a340 DEX-DEG x86 64bit/Mac OS X
 --- GAMS Parameters defined
-    Input /Users/victor_medina/OneDrive - University of Edinburgh/Tutorials/BUST10134/wk3/tut_1_2_wk3.gms
+    Input /Users/victor_medina/OneDrive - University of Edinburgh/Tutorials/BUST10134/wk6/tut_2_2_wk6.gms
     PageSize 0
-    ScrDir /Users/victor_medina/OneDrive - University of Edinburgh/Tutorials/BUST10134/wk3/225a/
+    ScrDir /Users/victor_medina/OneDrive - University of Edinburgh/Tutorials/BUST10134/wk6/225a/
     SysDir /Applications/GAMS30.1/GAMS Terminal.app/Contents/MacOS/
     LogOption 3
     ErrMsg 1
@@ -14,12 +14,12 @@ Licensee: Course License Advanced Analytics with MathematG190618/0001AO-GEN
           The University of Edinburgh - Business School               DCE66
           Course license for use within the course and related course work
 --- Starting compilation
---- tut_1_2_wk3.gms(54) 3 Mb
---- Starting execution: elapsed 0:00:00.003
---- Generating LP model transport2
---- tut_1_2_wk3.gms(51) 4 Mb
----   6 rows  13 columns  37 non-zeroes
---- Executing CPLEX: elapsed 0:00:00.010
+--- tut_2_2_wk6.gms(48) 3 Mb
+--- Starting execution: elapsed 0:00:00.002
+--- Generating LP model prob_2
+--- tut_2_2_wk6.gms(45) 4 Mb
+---   3 rows  3 columns  7 non-zeroes
+--- Executing CPLEX: elapsed 0:00:00.006
 IBM ILOG CPLEX   30.1.0 re01a340 Released Jan 10, 2020 DEG x86 64bit/Mac OS X 
 --- GAMS/Cplex licensed for continuous and discrete problems.
 Cplex 12.10.0.0
@@ -36,21 +36,19 @@ CPXPARAM_Simplex_Limits_Iterations               2000000000
 CPXPARAM_TimeLimit                               1000
 CPXPARAM_Tune_TimeLimit                          200
 Tried aggregator 1 time.
-LP Presolve eliminated 2 rows and 7 columns.
-Aggregator did 3 substitutions.
-Reduced LP has 1 rows, 3 columns, and 3 nonzeros.
-Presolve time = 0.00 sec. (0.01 ticks)
-Iteration      Dual Objective            In Variable           Out Variable
-     1            1150.000000x(Supershelf.Zeron_S.Hecap_constr(Arnold artif
+LP Presolve eliminated 2 rows and 2 columns.
+Aggregator did 1 substitutions.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.00 ticks)
 LP status(1): optimal
-Cplex Time: 0.00sec (det. 0.01 ticks)
+Cplex Time: 0.00sec (det. 0.00 ticks)
 Optimal solution found.
-Objective :        1150.000000
+Objective :          15.000000
 --- Restarting execution
---- tut_1_2_wk3.gms(51) 2 Mb
---- Reading solution for model transport2
---- Executing after solve: elapsed 0:00:00.068
---- tut_1_2_wk3.gms(54) 3 Mb
+--- tut_2_2_wk6.gms(45) 2 Mb
+--- Reading solution for model prob_2
+--- Executing after solve: elapsed 0:00:00.052
+--- tut_2_2_wk6.gms(48) 3 Mb
 *** Status: Normal completion
---- Job tut_1_2_wk3.gms Stop 02/03/20 11:38:02 elapsed 0:00:00.069
+--- Job tut_2_2_wk6.gms Stop 02/26/20 14:29:06 elapsed 0:00:00.052
 

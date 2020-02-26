@@ -1,0 +1,17 @@
+B 3 C o m p i l a t i o n
+B 76 Include File Summary
+B 88 Equation Listing    SOLVE prob_1 Using LP From line 54
+D 91 of
+D 96 constr
+B 108 Column Listing      SOLVE prob_1 Using LP From line 54
+E 111 z
+E 118 x
+B 146 Model Statistics    SOLVE prob_1 Using LP From line 54
+B 162 Solution Report     SOLVE prob_1 Using LP From line 54
+F 192 of
+F 196 constr
+G 207 z
+G 211 x
+B 225 E x e c u t i o n
+I 225 x
+I 231 x
