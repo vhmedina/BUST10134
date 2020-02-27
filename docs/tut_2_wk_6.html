@@ -25,12 +25,12 @@ class: center, middle, inverse, title-slide
 &gt; **Extreme Point Theorem**:
 &gt; If an LP has a unique optimal solution, then it is located on one of the extreme points.
 
-For a linear programme a **basic feasible solution** is equivalent to **extreme point**
+For a linear programme a **extreme point** is equivalent to **basic feasible solution**
 
 - A linear program in which all the variables are `\(\ge\)` and all the constraints are `\(=\)` is said to be in **standard form**.
 - Standard form is attained by adding **slack variables** to `\(\le\)` constraints, and by subtracting **surplus variables** from `\(\ge\)` constraints.
-- Slack and surplus variables have objective function coefficients equal to 0.
-- If the LP in standard form has `\(m\)` equations and `\(n\)` variables, then, to find a solution, `\(n-m\)` variables are 0 (**nonbasic**) and `\(m\)` are `\(\ge0\)` (**basic**) 
+- In the objective function, slack and surplus variables have coefficients equal to 0.
+- If the LP in its standard form has `\(m\)` equations and `\(n\)` variables, then, to find a solution, `\(n-m\)` variables are 0 (**nonbasic**) and `\(m\)` are `\(\ge0\)` (**basic**) 
 
 ---
 # Example
@@ -38,6 +38,7 @@ For a linear programme a **basic feasible solution** is equivalent to **extreme 
 ![](assets/ex_slack.png)
 - There are `\(m=3\)` equations and `\(n=5\)` variables
 - If 2 are set to zero, we can find a solution
+- How many **basic feasible solution**?
 
 ---
 
@@ -50,7 +51,10 @@ background-size: contain
 .pull-left[
 For 20 variables and 10 constraints, for example, you need to evaluate up to 
 `$${20\choose 10 } = \frac{20!}{10!10!}=184,756$$`
-Not efficient to find all the extreme points or the basic feasible solutions. The **Simplex Method** addresses this problem.
+
+- Not efficient to find all the extreme points or the basic feasible solutions
+
+- The **Simplex Method** addresses this problem.
 ]
 
 .pull-right[
