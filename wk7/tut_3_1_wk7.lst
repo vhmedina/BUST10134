@@ -1,0 +1,1257 @@
+GAMS 30.1.0  re01a340 Released Jan 10, 2020 DEX-DEG x86 64bit/Mac OS X - 03/05/20 17:35:01 Page 1
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+C o m p i l a t i o n
+
+
+   1  Set
+   2     i 'product class' / class-1*class-4 /
+   3     j 'workstation'   / work-1*work-2   /
+   4     s 'nodes'         / s1*s100 /;
+   5   
+   6  Parameter
+   7     c(i)     'profit' / class-1 12, class-2 20, class-3 18, class-4 40 /
+   8     q(j)     'cost'   / work-1 5, work-2 10 /
+   9     h(j,s)   'available labor'
+  10     t(j,i,s) 'labor required';
+  11   
+  12  Table trand(j,*,i) 'min and max values'
+  13                  class-1  class-2  class-3  class-4
+  14     work-1.min       3.5      8        6          9
+  15     work-1.max       4.5     10        8         11
+  16     work-2.min        .8       .8      2.5       36
+  17     work-2.max       1.2      1.2      3.5       44;
+  18   
+  19  t(j,i,s) = uniform(trand(j,'min',i),trand(j,'max',i));
+  20   
+  21  h('work-1',s) = normal(6000,100);
+  22  h('work-2',s) = normal(4000, 50);
+  23   
+  24  Variable
+  25     eprofit 'expected profit'
+  26     x(i)    'products sold'
+  27     v(j,s)  'labor purchased';
+  28   
+  29  Positive Variable x, v;
+  30   
+  31  Equation
+  32     obj       'expected cost definition'
+  33     lbal(j,s) 'labor balance';
+  34   
+  35  obj.. eprofit =e= sum(i, c(i)*x(i)) - 1/card(s)*sum((j,s), q(j)*v(j,s));
+  36   
+  37  lbal(j,s).. sum(i, t(j,i,s)*x(i)) =l= h(j,s) + v(j,s);
+  38   
+  39  Model mix / all /;
+  40   
+  41  solve mix using lp maximizing eprofit;
+  42   
+  43  display eprofit.l, x.l;
+
+
+COMPILATION TIME     =        0.000 SECONDS      3 MB  30.1.0 re01a340 DEX-DEG
+GAMS 30.1.0  re01a340 Released Jan 10, 2020 DEX-DEG x86 64bit/Mac OS X - 03/05/20 17:35:01 Page 2
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Equation Listing    SOLVE mix Using LP From line 41
+
+
+---- obj  =E=  expected cost definition
+
+obj..  eprofit - 12*x(class-1) - 20*x(class-2) - 18*x(class-3) - 40*x(class-4) + 0.05*v(work-1,s1) + 0.05*v(work-1,s2) + 0.05*v(work-1,s3) + 0.05*v(work-1,s4) + 0.05*v(work-1,s5) + 0.05*v(work-1,s6) + 0.05*v(work-1,s7) + 0.05*v(work-1,s8)
+     
+      + 0.05*v(work-1,s9) + 0.05*v(work-1,s10) + 0.05*v(work-1,s11) + 0.05*v(work-1,s12) + 0.05*v(work-1,s13) + 0.05*v(work-1,s14) + 0.05*v(work-1,s15) + 0.05*v(work-1,s16) + 0.05*v(work-1,s17) + 0.05*v(work-1,s18) + 0.05*v(work-1,s19)
+     
+      + 0.05*v(work-1,s20) + 0.05*v(work-1,s21) + 0.05*v(work-1,s22) + 0.05*v(work-1,s23) + 0.05*v(work-1,s24) + 0.05*v(work-1,s25) + 0.05*v(work-1,s26) + 0.05*v(work-1,s27) + 0.05*v(work-1,s28) + 0.05*v(work-1,s29) + 0.05*v(work-1,s30)
+     
+      + 0.05*v(work-1,s31) + 0.05*v(work-1,s32) + 0.05*v(work-1,s33) + 0.05*v(work-1,s34) + 0.05*v(work-1,s35) + 0.05*v(work-1,s36) + 0.05*v(work-1,s37) + 0.05*v(work-1,s38) + 0.05*v(work-1,s39) + 0.05*v(work-1,s40) + 0.05*v(work-1,s41)
+     
+      + 0.05*v(work-1,s42) + 0.05*v(work-1,s43) + 0.05*v(work-1,s44) + 0.05*v(work-1,s45) + 0.05*v(work-1,s46) + 0.05*v(work-1,s47) + 0.05*v(work-1,s48) + 0.05*v(work-1,s49) + 0.05*v(work-1,s50) + 0.05*v(work-1,s51) + 0.05*v(work-1,s52)
+     
+      + 0.05*v(work-1,s53) + 0.05*v(work-1,s54) + 0.05*v(work-1,s55) + 0.05*v(work-1,s56) + 0.05*v(work-1,s57) + 0.05*v(work-1,s58) + 0.05*v(work-1,s59) + 0.05*v(work-1,s60) + 0.05*v(work-1,s61) + 0.05*v(work-1,s62) + 0.05*v(work-1,s63)
+     
+      + 0.05*v(work-1,s64) + 0.05*v(work-1,s65) + 0.05*v(work-1,s66) + 0.05*v(work-1,s67) + 0.05*v(work-1,s68) + 0.05*v(work-1,s69) + 0.05*v(work-1,s70) + 0.05*v(work-1,s71) + 0.05*v(work-1,s72) + 0.05*v(work-1,s73) + 0.05*v(work-1,s74)
+     
+      + 0.05*v(work-1,s75) + 0.05*v(work-1,s76) + 0.05*v(work-1,s77) + 0.05*v(work-1,s78) + 0.05*v(work-1,s79) + 0.05*v(work-1,s80) + 0.05*v(work-1,s81) + 0.05*v(work-1,s82) + 0.05*v(work-1,s83) + 0.05*v(work-1,s84) + 0.05*v(work-1,s85)
+     
+      + 0.05*v(work-1,s86) + 0.05*v(work-1,s87) + 0.05*v(work-1,s88) + 0.05*v(work-1,s89) + 0.05*v(work-1,s90) + 0.05*v(work-1,s91) + 0.05*v(work-1,s92) + 0.05*v(work-1,s93) + 0.05*v(work-1,s94) + 0.05*v(work-1,s95) + 0.05*v(work-1,s96)
+     
+      + 0.05*v(work-1,s97) + 0.05*v(work-1,s98) + 0.05*v(work-1,s99) + 0.05*v(work-1,s100) + 0.1*v(work-2,s1) + 0.1*v(work-2,s2) + 0.1*v(work-2,s3) + 0.1*v(work-2,s4) + 0.1*v(work-2,s5) + 0.1*v(work-2,s6) + 0.1*v(work-2,s7) + 0.1*v(work-2,s8)
+     
+      + 0.1*v(work-2,s9) + 0.1*v(work-2,s10) + 0.1*v(work-2,s11) + 0.1*v(work-2,s12) + 0.1*v(work-2,s13) + 0.1*v(work-2,s14) + 0.1*v(work-2,s15) + 0.1*v(work-2,s16) + 0.1*v(work-2,s17) + 0.1*v(work-2,s18) + 0.1*v(work-2,s19) + 0.1*v(work-2,s20)
+     
+      + 0.1*v(work-2,s21) + 0.1*v(work-2,s22) + 0.1*v(work-2,s23) + 0.1*v(work-2,s24) + 0.1*v(work-2,s25) + 0.1*v(work-2,s26) + 0.1*v(work-2,s27) + 0.1*v(work-2,s28) + 0.1*v(work-2,s29) + 0.1*v(work-2,s30) + 0.1*v(work-2,s31) + 0.1*v(work-2,s32)
+     
+      + 0.1*v(work-2,s33) + 0.1*v(work-2,s34) + 0.1*v(work-2,s35) + 0.1*v(work-2,s36) + 0.1*v(work-2,s37) + 0.1*v(work-2,s38) + 0.1*v(work-2,s39) + 0.1*v(work-2,s40) + 0.1*v(work-2,s41) + 0.1*v(work-2,s42) + 0.1*v(work-2,s43) + 0.1*v(work-2,s44)
+     
+      + 0.1*v(work-2,s45) + 0.1*v(work-2,s46) + 0.1*v(work-2,s47) + 0.1*v(work-2,s48) + 0.1*v(work-2,s49) + 0.1*v(work-2,s50) + 0.1*v(work-2,s51) + 0.1*v(work-2,s52) + 0.1*v(work-2,s53) + 0.1*v(work-2,s54) + 0.1*v(work-2,s55) + 0.1*v(work-2,s56)
+     
+      + 0.1*v(work-2,s57) + 0.1*v(work-2,s58) + 0.1*v(work-2,s59) + 0.1*v(work-2,s60) + 0.1*v(work-2,s61) + 0.1*v(work-2,s62) + 0.1*v(work-2,s63) + 0.1*v(work-2,s64) + 0.1*v(work-2,s65) + 0.1*v(work-2,s66) + 0.1*v(work-2,s67) + 0.1*v(work-2,s68)
+     
+      + 0.1*v(work-2,s69) + 0.1*v(work-2,s70) + 0.1*v(work-2,s71) + 0.1*v(work-2,s72) + 0.1*v(work-2,s73) + 0.1*v(work-2,s74) + 0.1*v(work-2,s75) + 0.1*v(work-2,s76) + 0.1*v(work-2,s77) + 0.1*v(work-2,s78) + 0.1*v(work-2,s79) + 0.1*v(work-2,s80)
+     
+      + 0.1*v(work-2,s81) + 0.1*v(work-2,s82) + 0.1*v(work-2,s83) + 0.1*v(work-2,s84) + 0.1*v(work-2,s85) + 0.1*v(work-2,s86) + 0.1*v(work-2,s87) + 0.1*v(work-2,s88) + 0.1*v(work-2,s89) + 0.1*v(work-2,s90) + 0.1*v(work-2,s91) + 0.1*v(work-2,s92)
+     
+      + 0.1*v(work-2,s93) + 0.1*v(work-2,s94) + 0.1*v(work-2,s95) + 0.1*v(work-2,s96) + 0.1*v(work-2,s97) + 0.1*v(work-2,s98) + 0.1*v(work-2,s99) + 0.1*v(work-2,s100) =E= 0 ; (LHS = 0)
+     
+
+---- lbal  =L=  labor balance
+
+lbal(work-1,s1)..  3.671747132*x(class-1) + 8.10281422*x(class-2) + 7.865521046*x(class-3) + 10.008428208*x(class-4) - v(work-1,s1) =L= 6125.98681078209 ; (LHS = 0)
+     
+lbal(work-1,s2)..  4.343266708*x(class-1) + 8.012016736*x(class-2) + 6.697531084*x(class-3) + 10.662529162*x(class-4) - v(work-1,s2) =L= 5958.22107164801 ; (LHS = 0)
+     
+lbal(work-1,s3)..  4.050375356*x(class-1) + 8.802455366*x(class-2) + 6.016574386*x(class-3) + 10.204275394*x(class-4) - v(work-1,s3) =L= 5969.74138104781 ; (LHS = 0)
+     
+REMAINING 197 ENTRIES SKIPPED
+
+GAMS 30.1.0  re01a340 Released Jan 10, 2020 DEX-DEG x86 64bit/Mac OS X - 03/05/20 17:35:01 Page 3
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Column Listing      SOLVE mix Using LP From line 41
+
+
+---- eprofit  expected profit
+
+eprofit
+                (.LO, .L, .UP, .M = -INF, 0, +INF, 0)
+        1       obj
+
+
+---- x  products sold
+
+x(class-1)
+                (.LO, .L, .UP, .M = 0, 0, +INF, 0)
+      -12       obj
+        3.6717  lbal(work-1,s1)
+        4.3433  lbal(work-1,s2)
+        4.0504  lbal(work-1,s3)
+        3.8011  lbal(work-1,s4)
+        3.7922  lbal(work-1,s5)
+        3.7241  lbal(work-1,s6)
+        3.8498  lbal(work-1,s7)
+        4.3563  lbal(work-1,s8)
+        3.5671  lbal(work-1,s9)
+        4.0002  lbal(work-1,s10)
+        4.4981  lbal(work-1,s11)
+        4.0787  lbal(work-1,s12)
+        4.4911  lbal(work-1,s13)
+        4.2623  lbal(work-1,s14)
+        3.6307  lbal(work-1,s15)
+        4.1397  lbal(work-1,s16)
+        3.6595  lbal(work-1,s17)
+        3.7501  lbal(work-1,s18)
+        4.1689  lbal(work-1,s19)
+        3.9354  lbal(work-1,s20)
+        3.8597  lbal(work-1,s21)
+        3.8514  lbal(work-1,s22)
+        3.6315  lbal(work-1,s23)
+        3.6501  lbal(work-1,s24)
+        4.0891  lbal(work-1,s25)
+        4.3309  lbal(work-1,s26)
+        3.7308  lbal(work-1,s27)
+        4.1657  lbal(work-1,s28)
+        4.2759  lbal(work-1,s29)
+        3.8037  lbal(work-1,s30)
+        3.6105  lbal(work-1,s31)
+        4.0024  lbal(work-1,s32)
+        3.6602  lbal(work-1,s33)
+        4.3725  lbal(work-1,s34)
+        3.7651  lbal(work-1,s35)
+        3.7858  lbal(work-1,s36)
+        4.094   lbal(work-1,s37)
+        4.2227  lbal(work-1,s38)
+        4.1282  lbal(work-1,s39)
+        3.9638  lbal(work-1,s40)
+        3.9133  lbal(work-1,s41)
+        3.6177  lbal(work-1,s42)
+        3.8142  lbal(work-1,s43)
+        3.5466  lbal(work-1,s44)
+        3.8386  lbal(work-1,s45)
+        3.6821  lbal(work-1,s46)
+        4.1457  lbal(work-1,s47)
+        4.0607  lbal(work-1,s48)
+        4.27    lbal(work-1,s49)
+        3.7978  lbal(work-1,s50)
+        4.1611  lbal(work-1,s51)
+        4.2558  lbal(work-1,s52)
+        4.1274  lbal(work-1,s53)
+        3.7839  lbal(work-1,s54)
+        3.5864  lbal(work-1,s55)
+        3.6025  lbal(work-1,s56)
+        4.1413  lbal(work-1,s57)
+        4.0453  lbal(work-1,s58)
+        3.5315  lbal(work-1,s59)
+        4.2924  lbal(work-1,s60)
+        3.5728  lbal(work-1,s61)
+        3.6757  lbal(work-1,s62)
+        4.0256  lbal(work-1,s63)
+        4.2502  lbal(work-1,s64)
+        3.6781  lbal(work-1,s65)
+        3.5341  lbal(work-1,s66)
+        4.0851  lbal(work-1,s67)
+        4.1212  lbal(work-1,s68)
+        3.8894  lbal(work-1,s69)
+        3.8587  lbal(work-1,s70)
+        3.743   lbal(work-1,s71)
+        3.7464  lbal(work-1,s72)
+        3.6305  lbal(work-1,s73)
+        4.4334  lbal(work-1,s74)
+        3.8799  lbal(work-1,s75)
+        4.2834  lbal(work-1,s76)
+        3.8     lbal(work-1,s77)
+        3.6255  lbal(work-1,s78)
+        4.2489  lbal(work-1,s79)
+        3.5692  lbal(work-1,s80)
+        3.702   lbal(work-1,s81)
+        3.5051  lbal(work-1,s82)
+        3.7696  lbal(work-1,s83)
+        3.9999  lbal(work-1,s84)
+        3.6513  lbal(work-1,s85)
+        3.6742  lbal(work-1,s86)
+        3.8306  lbal(work-1,s87)
+        3.8169  lbal(work-1,s88)
+        3.8221  lbal(work-1,s89)
+        4.464   lbal(work-1,s90)
+        4.4936  lbal(work-1,s91)
+        3.8699  lbal(work-1,s92)
+        3.8729  lbal(work-1,s93)
+        4.272   lbal(work-1,s94)
+        3.8967  lbal(work-1,s95)
+        4.4131  lbal(work-1,s96)
+        3.6196  lbal(work-1,s97)
+        4.2355  lbal(work-1,s98)
+        3.5554  lbal(work-1,s99)
+        4.0763  lbal(work-1,s100)
+        1.1086  lbal(work-2,s1)
+        0.856   lbal(work-2,s2)
+        0.9058  lbal(work-2,s3)
+        1.073   lbal(work-2,s4)
+        0.9799  lbal(work-2,s5)
+        1.1862  lbal(work-2,s6)
+        1.1832  lbal(work-2,s7)
+        1.1597  lbal(work-2,s8)
+        0.931   lbal(work-2,s9)
+        0.9828  lbal(work-2,s10)
+        1.0385  lbal(work-2,s11)
+        1.1514  lbal(work-2,s12)
+        0.8683  lbal(work-2,s13)
+        1.0534  lbal(work-2,s14)
+        1.1086  lbal(work-2,s15)
+        1.0278  lbal(work-2,s16)
+        0.8111  lbal(work-2,s17)
+        1.1244  lbal(work-2,s18)
+        0.9116  lbal(work-2,s19)
+        0.9733  lbal(work-2,s20)
+        0.9345  lbal(work-2,s21)
+        1.0355  lbal(work-2,s22)
+        1.0298  lbal(work-2,s23)
+        1.0174  lbal(work-2,s24)
+        1.0313  lbal(work-2,s25)
+        1.1909  lbal(work-2,s26)
+        0.9286  lbal(work-2,s27)
+        1.1052  lbal(work-2,s28)
+        1.185   lbal(work-2,s29)
+        1.1796  lbal(work-2,s30)
+        0.9024  lbal(work-2,s31)
+        0.93    lbal(work-2,s32)
+        0.8859  lbal(work-2,s33)
+        0.8696  lbal(work-2,s34)
+        1.0925  lbal(work-2,s35)
+        0.9081  lbal(work-2,s36)
+        1.1034  lbal(work-2,s37)
+        1.047   lbal(work-2,s38)
+        0.9164  lbal(work-2,s39)
+        1.0963  lbal(work-2,s40)
+        0.8031  lbal(work-2,s41)
+        1.1466  lbal(work-2,s42)
+        0.8061  lbal(work-2,s43)
+        0.9713  lbal(work-2,s44)
+        0.9435  lbal(work-2,s45)
+        1.0819  lbal(work-2,s46)
+        0.9663  lbal(work-2,s47)
+        1.0199  lbal(work-2,s48)
+        0.938   lbal(work-2,s49)
+        1.0798  lbal(work-2,s50)
+        1.1734  lbal(work-2,s51)
+        0.9877  lbal(work-2,s52)
+        0.8854  lbal(work-2,s53)
+        1.0043  lbal(work-2,s54)
+        0.9463  lbal(work-2,s55)
+        1.1742  lbal(work-2,s56)
+        0.8272  lbal(work-2,s57)
+        1.0015  lbal(work-2,s58)
+        0.957   lbal(work-2,s59)
+        0.8819  lbal(work-2,s60)
+        1.0118  lbal(work-2,s61)
+        1.0356  lbal(work-2,s62)
+        0.9383  lbal(work-2,s63)
+        0.9012  lbal(work-2,s64)
+        1.0191  lbal(work-2,s65)
+        1.019   lbal(work-2,s66)
+        0.8233  lbal(work-2,s67)
+        0.9511  lbal(work-2,s68)
+        1.1896  lbal(work-2,s69)
+        0.9519  lbal(work-2,s70)
+        0.8625  lbal(work-2,s71)
+        0.9889  lbal(work-2,s72)
+        0.9588  lbal(work-2,s73)
+        0.8822  lbal(work-2,s74)
+        1.0509  lbal(work-2,s75)
+        0.8014  lbal(work-2,s76)
+        1.0016  lbal(work-2,s77)
+        0.8009  lbal(work-2,s78)
+        1.0085  lbal(work-2,s79)
+        1.1344  lbal(work-2,s80)
+        0.8288  lbal(work-2,s81)
+        1.1043  lbal(work-2,s82)
+        0.9161  lbal(work-2,s83)
+        0.898   lbal(work-2,s84)
+        0.9744  lbal(work-2,s85)
+        0.9475  lbal(work-2,s86)
+        1.0214  lbal(work-2,s87)
+        0.8299  lbal(work-2,s88)
+        1.1638  lbal(work-2,s89)
+        0.8195  lbal(work-2,s90)
+        1.1281  lbal(work-2,s91)
+        1.1172  lbal(work-2,s92)
+        1.0638  lbal(work-2,s93)
+        0.9567  lbal(work-2,s94)
+        0.9653  lbal(work-2,s95)
+        1.1463  lbal(work-2,s96)
+        1.1901  lbal(work-2,s97)
+        1.029   lbal(work-2,s98)
+        0.9256  lbal(work-2,s99)
+        0.982   lbal(work-2,s100)
+
+x(class-2)
+                (.LO, .L, .UP, .M = 0, 0, +INF, 0)
+      -20       obj
+        8.1028  lbal(work-1,s1)
+        8.012   lbal(work-1,s2)
+        8.8025  lbal(work-1,s3)
+        9.0398  lbal(work-1,s4)
+        9.2578  lbal(work-1,s5)
+        8.4515  lbal(work-1,s6)
+        8.7922  lbal(work-1,s7)
+        8.552   lbal(work-1,s8)
+        8.3047  lbal(work-1,s9)
+        9.8726  lbal(work-1,s10)
+        8.8453  lbal(work-1,s11)
+        8.2693  lbal(work-1,s12)
+        8.7721  lbal(work-1,s13)
+        8.7493  lbal(work-1,s14)
+        8.537   lbal(work-1,s15)
+        9.8967  lbal(work-1,s16)
+        8.3779  lbal(work-1,s17)
+        8.595   lbal(work-1,s18)
+        8.1491  lbal(work-1,s19)
+        8.8027  lbal(work-1,s20)
+        8.2034  lbal(work-1,s21)
+        8.7678  lbal(work-1,s22)
+        8.6482  lbal(work-1,s23)
+        8.3843  lbal(work-1,s24)
+        8.2247  lbal(work-1,s25)
+        9.1931  lbal(work-1,s26)
+        9.0229  lbal(work-1,s27)
+        8.0901  lbal(work-1,s28)
+        9.5662  lbal(work-1,s29)
+        9.8915  lbal(work-1,s30)
+        9.1929  lbal(work-1,s31)
+        9.2147  lbal(work-1,s32)
+        8.725   lbal(work-1,s33)
+        9.1881  lbal(work-1,s34)
+        9.3597  lbal(work-1,s35)
+        9.0132  lbal(work-1,s36)
+        8.3185  lbal(work-1,s37)
+        9.3138  lbal(work-1,s38)
+        9.0478  lbal(work-1,s39)
+        8.2488  lbal(work-1,s40)
+        9.9734  lbal(work-1,s41)
+        8.4562  lbal(work-1,s42)
+        9.3513  lbal(work-1,s43)
+        9.5536  lbal(work-1,s44)
+        9.8649  lbal(work-1,s45)
+        8.4025  lbal(work-1,s46)
+        8.5943  lbal(work-1,s47)
+        8.3945  lbal(work-1,s48)
+        8.4927  lbal(work-1,s49)
+        9.293   lbal(work-1,s50)
+        9.4699  lbal(work-1,s51)
+        8.1709  lbal(work-1,s52)
+        8.3007  lbal(work-1,s53)
+        8.8684  lbal(work-1,s54)
+        8.3739  lbal(work-1,s55)
+        9.3854  lbal(work-1,s56)
+        9.5259  lbal(work-1,s57)
+        8.3096  lbal(work-1,s58)
+        8.7788  lbal(work-1,s59)
+        9.3909  lbal(work-1,s60)
+        9.6916  lbal(work-1,s61)
+        9.2254  lbal(work-1,s62)
+        9.9519  lbal(work-1,s63)
+        8.0538  lbal(work-1,s64)
+        8.3749  lbal(work-1,s65)
+        8.1742  lbal(work-1,s66)
+        9.0808  lbal(work-1,s67)
+        8.2537  lbal(work-1,s68)
+        9.468   lbal(work-1,s69)
+        8.2265  lbal(work-1,s70)
+        8.9767  lbal(work-1,s71)
+        9.5912  lbal(work-1,s72)
+        8.9841  lbal(work-1,s73)
+        9.0671  lbal(work-1,s74)
+        8.0212  lbal(work-1,s75)
+        9.0877  lbal(work-1,s76)
+        8.9023  lbal(work-1,s77)
+        9.9507  lbal(work-1,s78)
+        8.3677  lbal(work-1,s79)
+        8.3271  lbal(work-1,s80)
+        8.0493  lbal(work-1,s81)
+        8.3556  lbal(work-1,s82)
+        8.1226  lbal(work-1,s83)
+        8.0333  lbal(work-1,s84)
+        9.6713  lbal(work-1,s85)
+        9.2033  lbal(work-1,s86)
+        8.054   lbal(work-1,s87)
+        8.3922  lbal(work-1,s88)
+        9.9014  lbal(work-1,s89)
+        8.6711  lbal(work-1,s90)
+        9.1885  lbal(work-1,s91)
+        8.5184  lbal(work-1,s92)
+        9.2813  lbal(work-1,s93)
+        8.3105  lbal(work-1,s94)
+        8.92    lbal(work-1,s95)
+        8.7867  lbal(work-1,s96)
+        9.6109  lbal(work-1,s97)
+        9.082   lbal(work-1,s98)
+        8.7814  lbal(work-1,s99)
+        9.1156  lbal(work-1,s100)
+        0.9484  lbal(work-2,s1)
+        0.9679  lbal(work-2,s2)
+        0.8341  lbal(work-2,s3)
+        1.1258  lbal(work-2,s4)
+        1.0037  lbal(work-2,s5)
+        1.0938  lbal(work-2,s6)
+        1.1298  lbal(work-2,s7)
+        0.9658  lbal(work-2,s8)
+        1.1698  lbal(work-2,s9)
+        0.9577  lbal(work-2,s10)
+        0.9777  lbal(work-2,s11)
+        1.0782  lbal(work-2,s12)
+        1.0707  lbal(work-2,s13)
+        1.0286  lbal(work-2,s14)
+        0.8694  lbal(work-2,s15)
+        1.0417  lbal(work-2,s16)
+        1.0344  lbal(work-2,s17)
+        1.0911  lbal(work-2,s18)
+        0.8985  lbal(work-2,s19)
+        0.8568  lbal(work-2,s20)
+        1.1565  lbal(work-2,s21)
+        0.9771  lbal(work-2,s22)
+        0.8457  lbal(work-2,s23)
+        1.1614  lbal(work-2,s24)
+        0.9335  lbal(work-2,s25)
+        1.1984  lbal(work-2,s26)
+        0.9858  lbal(work-2,s27)
+        1.0122  lbal(work-2,s28)
+        0.8762  lbal(work-2,s29)
+        0.8796  lbal(work-2,s30)
+        1.058   lbal(work-2,s31)
+        1.1196  lbal(work-2,s32)
+        1.0345  lbal(work-2,s33)
+        1.1886  lbal(work-2,s34)
+        0.9964  lbal(work-2,s35)
+        0.949   lbal(work-2,s36)
+        1.1309  lbal(work-2,s37)
+        1.1283  lbal(work-2,s38)
+        0.8125  lbal(work-2,s39)
+        1.1701  lbal(work-2,s40)
+        0.8012  lbal(work-2,s41)
+        1.0472  lbal(work-2,s42)
+        0.8027  lbal(work-2,s43)
+        0.9622  lbal(work-2,s44)
+        1.0625  lbal(work-2,s45)
+        1.0462  lbal(work-2,s46)
+        0.9054  lbal(work-2,s47)
+        0.8282  lbal(work-2,s48)
+        0.8184  lbal(work-2,s49)
+        0.8641  lbal(work-2,s50)
+        0.981   lbal(work-2,s51)
+        0.8675  lbal(work-2,s52)
+        1.0286  lbal(work-2,s53)
+        1.1435  lbal(work-2,s54)
+        0.8143  lbal(work-2,s55)
+        0.9421  lbal(work-2,s56)
+        0.9351  lbal(work-2,s57)
+        0.9946  lbal(work-2,s58)
+        0.9037  lbal(work-2,s59)
+        1.1565  lbal(work-2,s60)
+        1.1397  lbal(work-2,s61)
+        1.0538  lbal(work-2,s62)
+        1.1946  lbal(work-2,s63)
+        1.1032  lbal(work-2,s64)
+        1.0032  lbal(work-2,s65)
+        1.1071  lbal(work-2,s66)
+        1.1329  lbal(work-2,s67)
+        1.0336  lbal(work-2,s68)
+        1.03    lbal(work-2,s69)
+        1.0227  lbal(work-2,s70)
+        1.0414  lbal(work-2,s71)
+        1.1908  lbal(work-2,s72)
+        1.0216  lbal(work-2,s73)
+        1.174   lbal(work-2,s74)
+        0.9653  lbal(work-2,s75)
+        1.1226  lbal(work-2,s76)
+        0.8003  lbal(work-2,s77)
+        0.9821  lbal(work-2,s78)
+        0.9677  lbal(work-2,s79)
+        0.8063  lbal(work-2,s80)
+        0.8328  lbal(work-2,s81)
+        1.0395  lbal(work-2,s82)
+        1.0221  lbal(work-2,s83)
+        1.0472  lbal(work-2,s84)
+        1.154   lbal(work-2,s85)
+        0.8759  lbal(work-2,s86)
+        0.9712  lbal(work-2,s87)
+        0.8666  lbal(work-2,s88)
+        1.1545  lbal(work-2,s89)
+        1.0706  lbal(work-2,s90)
+        1.1453  lbal(work-2,s91)
+        0.8371  lbal(work-2,s92)
+        1.1986  lbal(work-2,s93)
+        1.0467  lbal(work-2,s94)
+        0.8003  lbal(work-2,s95)
+        1.0436  lbal(work-2,s96)
+        0.8695  lbal(work-2,s97)
+        0.9245  lbal(work-2,s98)
+        1.0916  lbal(work-2,s99)
+        0.8339  lbal(work-2,s100)
+
+x(class-3)
+                (.LO, .L, .UP, .M = 0, 0, +INF, 0)
+      -18       obj
+        7.8655  lbal(work-1,s1)
+        6.6975  lbal(work-1,s2)
+        6.0166  lbal(work-1,s3)
+        7.8977  lbal(work-1,s4)
+        7.1438  lbal(work-1,s5)
+        6.6673  lbal(work-1,s6)
+        7.9675  lbal(work-1,s7)
+        7.5329  lbal(work-1,s8)
+        6.2202  lbal(work-1,s9)
+        7.9896  lbal(work-1,s10)
+        7.1606  lbal(work-1,s11)
+        6.3328  lbal(work-1,s12)
+        7.2867  lbal(work-1,s13)
+        6.6886  lbal(work-1,s14)
+        7.8247  lbal(work-1,s15)
+        7.8001  lbal(work-1,s16)
+        6.0325  lbal(work-1,s17)
+        6.7373  lbal(work-1,s18)
+        7.3288  lbal(work-1,s19)
+        7.1868  lbal(work-1,s20)
+        6.0691  lbal(work-1,s21)
+        7.6836  lbal(work-1,s22)
+        7.8642  lbal(work-1,s23)
+        7.0159  lbal(work-1,s24)
+        6.5992  lbal(work-1,s25)
+        6.9932  lbal(work-1,s26)
+        6.0899  lbal(work-1,s27)
+        7.5474  lbal(work-1,s28)
+        7.0659  lbal(work-1,s29)
+        7.4935  lbal(work-1,s30)
+        7.4401  lbal(work-1,s31)
+        7.2632  lbal(work-1,s32)
+        6.2298  lbal(work-1,s33)
+        7.9423  lbal(work-1,s34)
+        7.4135  lbal(work-1,s35)
+        7.9725  lbal(work-1,s36)
+        7.7096  lbal(work-1,s37)
+        7.2429  lbal(work-1,s38)
+        7.4026  lbal(work-1,s39)
+        7.4018  lbal(work-1,s40)
+        7.5814  lbal(work-1,s41)
+        7.2204  lbal(work-1,s42)
+        6.1086  lbal(work-1,s43)
+        6.9704  lbal(work-1,s44)
+        6.1051  lbal(work-1,s45)
+        7.3972  lbal(work-1,s46)
+        6.3896  lbal(work-1,s47)
+        6.4521  lbal(work-1,s48)
+        7.6273  lbal(work-1,s49)
+        7.9835  lbal(work-1,s50)
+        7.5013  lbal(work-1,s51)
+        7.4367  lbal(work-1,s52)
+        6.0012  lbal(work-1,s53)
+        6.5277  lbal(work-1,s54)
+        7.6476  lbal(work-1,s55)
+        7.6391  lbal(work-1,s56)
+        7.7208  lbal(work-1,s57)
+        6.4254  lbal(work-1,s58)
+        6.9136  lbal(work-1,s59)
+        6.0767  lbal(work-1,s60)
+        6.646   lbal(work-1,s61)
+        6.8798  lbal(work-1,s62)
+        6.6307  lbal(work-1,s63)
+        6.2695  lbal(work-1,s64)
+        7.6219  lbal(work-1,s65)
+        6.8336  lbal(work-1,s66)
+        6.2836  lbal(work-1,s67)
+        6.9311  lbal(work-1,s68)
+        6.566   lbal(work-1,s69)
+        7.7914  lbal(work-1,s70)
+        6.1288  lbal(work-1,s71)
+        6.8292  lbal(work-1,s72)
+        6.6832  lbal(work-1,s73)
+        6.9366  lbal(work-1,s74)
+        7.2853  lbal(work-1,s75)
+        7.2872  lbal(work-1,s76)
+        6.6752  lbal(work-1,s77)
+        6.2016  lbal(work-1,s78)
+        7.8117  lbal(work-1,s79)
+        6.4347  lbal(work-1,s80)
+        7.8377  lbal(work-1,s81)
+        6.9035  lbal(work-1,s82)
+        6.1799  lbal(work-1,s83)
+        6.7484  lbal(work-1,s84)
+        6.83    lbal(work-1,s85)
+        6.8084  lbal(work-1,s86)
+        6.2233  lbal(work-1,s87)
+        7.5023  lbal(work-1,s88)
+        7.6068  lbal(work-1,s89)
+        6.0473  lbal(work-1,s90)
+        6.9618  lbal(work-1,s91)
+        6.5572  lbal(work-1,s92)
+        7.8032  lbal(work-1,s93)
+        6.0352  lbal(work-1,s94)
+        7.3621  lbal(work-1,s95)
+        7.9018  lbal(work-1,s96)
+        7.8004  lbal(work-1,s97)
+        7.7976  lbal(work-1,s98)
+        7.7489  lbal(work-1,s99)
+        6.782   lbal(work-1,s100)
+        2.942   lbal(work-2,s1)
+        3.1591  lbal(work-2,s2)
+        2.9845  lbal(work-2,s3)
+        2.8182  lbal(work-2,s4)
+        3.414   lbal(work-2,s5)
+        2.6842  lbal(work-2,s6)
+        3.3721  lbal(work-2,s7)
+        2.9561  lbal(work-2,s8)
+        2.9589  lbal(work-2,s9)
+        2.6241  lbal(work-2,s10)
+        2.6038  lbal(work-2,s11)
+        2.7349  lbal(work-2,s12)
+        2.8402  lbal(work-2,s13)
+        3.3731  lbal(work-2,s14)
+        3.3448  lbal(work-2,s15)
+        3.3229  lbal(work-2,s16)
+        2.9805  lbal(work-2,s17)
+        3.4138  lbal(work-2,s18)
+        3.4293  lbal(work-2,s19)
+        2.6081  lbal(work-2,s20)
+        2.8506  lbal(work-2,s21)
+        3.36    lbal(work-2,s22)
+        2.8405  lbal(work-2,s23)
+        2.7131  lbal(work-2,s24)
+        3.4264  lbal(work-2,s25)
+        2.8607  lbal(work-2,s26)
+        3.376   lbal(work-2,s27)
+        2.6481  lbal(work-2,s28)
+        2.956   lbal(work-2,s29)
+        2.7683  lbal(work-2,s30)
+        2.7968  lbal(work-2,s31)
+        2.6155  lbal(work-2,s32)
+        2.8998  lbal(work-2,s33)
+        3.4118  lbal(work-2,s34)
+        2.7516  lbal(work-2,s35)
+        2.603   lbal(work-2,s36)
+        2.6463  lbal(work-2,s37)
+        2.8863  lbal(work-2,s38)
+        2.5464  lbal(work-2,s39)
+        2.5264  lbal(work-2,s40)
+        2.654   lbal(work-2,s41)
+        2.5727  lbal(work-2,s42)
+        3.3286  lbal(work-2,s43)
+        2.8998  lbal(work-2,s44)
+        2.9172  lbal(work-2,s45)
+        3.4721  lbal(work-2,s46)
+        2.7434  lbal(work-2,s47)
+        2.862   lbal(work-2,s48)
+        3.1303  lbal(work-2,s49)
+        2.7429  lbal(work-2,s50)
+        2.6011  lbal(work-2,s51)
+        2.9059  lbal(work-2,s52)
+        2.9791  lbal(work-2,s53)
+        2.6449  lbal(work-2,s54)
+        3.0097  lbal(work-2,s55)
+        3.3853  lbal(work-2,s56)
+        2.5555  lbal(work-2,s57)
+        3.0074  lbal(work-2,s58)
+        3.2641  lbal(work-2,s59)
+        3.479   lbal(work-2,s60)
+        3.2204  lbal(work-2,s61)
+        3.3719  lbal(work-2,s62)
+        2.7995  lbal(work-2,s63)
+        3.2539  lbal(work-2,s64)
+        3.3438  lbal(work-2,s65)
+        2.9682  lbal(work-2,s66)
+        3.1549  lbal(work-2,s67)
+        2.8781  lbal(work-2,s68)
+        2.8589  lbal(work-2,s69)
+        2.7545  lbal(work-2,s70)
+        2.7555  lbal(work-2,s71)
+        2.9506  lbal(work-2,s72)
+        3.4449  lbal(work-2,s73)
+        2.8355  lbal(work-2,s74)
+        2.5485  lbal(work-2,s75)
+        3.3065  lbal(work-2,s76)
+        3.2326  lbal(work-2,s77)
+        3.42    lbal(work-2,s78)
+        2.8316  lbal(work-2,s79)
+        2.7098  lbal(work-2,s80)
+        2.5471  lbal(work-2,s81)
+        3.383   lbal(work-2,s82)
+        2.5928  lbal(work-2,s83)
+        3.3369  lbal(work-2,s84)
+        2.9638  lbal(work-2,s85)
+        2.5002  lbal(work-2,s86)
+        2.6566  lbal(work-2,s87)
+        3.205   lbal(work-2,s88)
+        2.7803  lbal(work-2,s89)
+        3.1356  lbal(work-2,s90)
+        3.08    lbal(work-2,s91)
+        3.4621  lbal(work-2,s92)
+        3.0142  lbal(work-2,s93)
+        3.0903  lbal(work-2,s94)
+        3.0675  lbal(work-2,s95)
+        2.5299  lbal(work-2,s96)
+        3.4689  lbal(work-2,s97)
+        3.0938  lbal(work-2,s98)
+        2.5596  lbal(work-2,s99)
+        3.0441  lbal(work-2,s100)
+
+REMAINING ENTRY SKIPPED
+
+---- v  labor purchased
+
+v(work-1,s1)
+                (.LO, .L, .UP, .M = 0, 0, +INF, 0)
+        0.05    obj
+       -1       lbal(work-1,s1)
+
+v(work-1,s2)
+                (.LO, .L, .UP, .M = 0, 0, +INF, 0)
+        0.05    obj
+       -1       lbal(work-1,s2)
+
+v(work-1,s3)
+                (.LO, .L, .UP, .M = 0, 0, +INF, 0)
+        0.05    obj
+       -1       lbal(work-1,s3)
+
+REMAINING 197 ENTRIES SKIPPED
+GAMS 30.1.0  re01a340 Released Jan 10, 2020 DEX-DEG x86 64bit/Mac OS X - 03/05/20 17:35:01 Page 4
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Model Statistics    SOLVE mix Using LP From line 41
+
+
+MODEL STATISTICS
+
+BLOCKS OF EQUATIONS           2     SINGLE EQUATIONS          201
+BLOCKS OF VARIABLES           3     SINGLE VARIABLES          205
+NON ZERO ELEMENTS         1,205
+
+
+GENERATION TIME      =        0.008 SECONDS      4 MB  30.1.0 re01a340 DEX-DEG
+
+
+EXECUTION TIME       =        0.009 SECONDS      4 MB  30.1.0 re01a340 DEX-DEG
+GAMS 30.1.0  re01a340 Released Jan 10, 2020 DEX-DEG x86 64bit/Mac OS X - 03/05/20 17:35:01 Page 5
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE mix Using LP From line 41
+
+
+               S O L V E      S U M M A R Y
+
+     MODEL   mix                 OBJECTIVE  eprofit
+     TYPE    LP                  DIRECTION  MAXIMIZE
+     SOLVER  CPLEX               FROM LINE  41
+
+**** SOLVER STATUS     1 Normal Completion         
+**** MODEL STATUS      1 Optimal                   
+**** OBJECTIVE VALUE            18095.5665
+
+ RESOURCE USAGE, LIMIT          0.010      1000.000
+ ITERATION COUNT, LIMIT       130    2000000000
+
+IBM ILOG CPLEX   30.1.0 re01a340 Released Jan 10, 2020 DEG x86 64bit/Mac OS X 
+--- GAMS/Cplex licensed for continuous and discrete problems.
+Cplex 12.10.0.0
+
+Space for names approximately 0.01 Mb
+Use option 'names no' to turn use of names off
+LP status(1): optimal
+Cplex Time: 0.00sec (det. 1.80 ticks)
+Optimal solution found.
+Objective :       18095.566473
+
+
+                           LOWER          LEVEL          UPPER         MARGINAL
+
+---- EQU obj                 .              .              .             1.0000      
+
+  obj  expected cost definition
+
+---- EQU lbal  labor balance
+
+                   LOWER          LEVEL          UPPER         MARGINAL
+
+work-1.s1          -INF         5752.1221      6125.9868          .          
+work-1.s2          -INF         5958.2211      5958.2211         0.0500      
+work-1.s3          -INF         5969.7414      5969.7414         0.0500      
+work-1.s4          -INF         5889.4487      5972.5432          .          
+work-1.s5          -INF         5930.9376      6243.9996          .          
+work-1.s6          -INF         5830.5120      5830.5120         0.0500      
+work-1.s7          -INF         6024.2054      6046.5656          .          
+work-1.s8          -INF         6025.3879      6025.3879         0.0500      
+work-1.s9          -INF         5584.9447      5904.9598          .          
+work-1.s10         -INF         5950.8781      5950.8781         0.0500      
+work-1.s11         -INF         6176.8754      6176.8754         0.0500      
+work-1.s12         -INF         6168.5946      6168.5946         0.0500      
+work-1.s13         -INF         6007.3391      6007.3391         0.0500      
+work-1.s14         -INF         5972.7740      5972.7740         0.0500      
+work-1.s15         -INF         5694.0489      5825.4038          .          
+work-1.s16         -INF         6072.5603      6072.5603         0.0500      
+work-1.s17         -INF         5758.3442      6100.1065          .          
+work-1.s18         -INF         5882.7879      6057.9053          .          
+work-1.s19         -INF         6123.4734      6123.4734         0.0500      
+work-1.s20         -INF         5915.4431      5915.4431         0.0500      
+work-1.s21         -INF         5980.7794      5980.7794         0.0500      
+work-1.s22         -INF         5968.7677      6027.8816          .          
+work-1.s23         -INF         5706.6898      6092.7269          .          
+work-1.s24         -INF         5738.6279      5948.2636          .          
+work-1.s25         -INF         6008.1130      6008.1130         0.0500      
+work-1.s26         -INF         6030.3161      6030.3161         0.0500      
+work-1.s27         -INF         5848.9392      6050.7074          .          
+work-1.s28         -INF         5991.8007      5991.8007         0.0500      
+work-1.s29         -INF         6105.3000      6105.3000         0.0500      
+work-1.s30         -INF         5862.8065      5862.8065         0.0500      
+work-1.s31         -INF         5611.5572      6149.3137          .          
+work-1.s32         -INF         6166.8755      6166.8755         0.0368      
+work-1.s33         -INF         5784.6447      6012.0628          .          
+work-1.s34         -INF         6041.3583      6041.3583         0.0500      
+work-1.s35         -INF         5934.9788      6063.9582          .          
+work-1.s36         -INF         5952.3007      6146.7838          .          
+work-1.s37         -INF         6097.5751      6097.5751         0.0500      
+work-1.s38         -INF         5958.5745      5958.5745         0.0500      
+work-1.s39         -INF         6028.0565      6028.0565         0.0500      
+work-1.s40         -INF         6078.5134      6078.5134         0.0500      
+work-1.s41         -INF         5926.8803      5926.8803         0.0500      
+work-1.s42         -INF         5708.8068      5851.8425          .          
+work-1.s43         -INF         5932.4553      6019.2558          .          
+work-1.s44         -INF         5529.0923      5993.7047          .          
+work-1.s45         -INF         5980.5399      5986.8006          .          
+work-1.s46         -INF         5749.9136      6064.2174          .          
+work-1.s47         -INF         6021.8721      6021.8721         0.0500      
+work-1.s48         -INF         6084.8995      6084.8995         0.0500      
+work-1.s49         -INF         5927.2455      5927.2455         0.0500      
+work-1.s50         -INF         5906.1249      5906.1249         0.0500      
+work-1.s51         -INF         6272.8591      6272.8591         0.0500      
+work-1.s52         -INF         6034.6364      6034.6364         0.0500      
+work-1.s53         -INF         6072.6603      6072.6603         0.0500      
+work-1.s54         -INF         5803.0157      5803.0157         0.0500      
+work-1.s55         -INF         5645.0224      5949.6891          .          
+work-1.s56         -INF         5634.6571      6136.6024          .          
+work-1.s57         -INF         5974.7593      5974.7593         0.0500      
+work-1.s58         -INF         5992.6371      5992.6371         0.0500      
+work-1.s59         -INF         5525.6687      6162.3602          .          
+work-1.s60         -INF         5984.0776      5984.0776         0.0500      
+work-1.s61         -INF         5590.5955      5939.6281          .          
+work-1.s62         -INF         5706.9693      5893.8821          .          
+work-1.s63         -INF         5912.9271      5912.9271         0.0500      
+work-1.s64         -INF         5989.0992      5989.0992         0.0500      
+work-1.s65         -INF         5750.8706      5983.8615          .          
+work-1.s66         -INF         5535.0101      6135.3739          .          
+work-1.s67         -INF         5993.4380      5993.4380         0.0500      
+work-1.s68         -INF         6059.6151      6059.6151         0.0500      
+work-1.s69         -INF         5902.6040      5902.6040         0.0500      
+work-1.s70         -INF         5975.8934      5975.8934         0.0500      
+work-1.s71         -INF         5815.7093      6065.2263          .          
+work-1.s72         -INF         5837.3802      6034.2964          .          
+work-1.s73         -INF         5701.0644      6104.1792          .          
+work-1.s74         -INF         6015.3201      6015.3201         0.0500      
+work-1.s75         -INF         5912.5800      5912.5800         0.0500      
+work-1.s76         -INF         5913.8500      5913.8500         0.0500      
+work-1.s77         -INF         5952.6118      5963.2381          .          
+work-1.s78         -INF         5667.7319      5907.8607          .          
+work-1.s79         -INF         6102.6872      6102.6872         0.0500      
+work-1.s80         -INF         5571.0125      5941.8044          .          
+work-1.s81         -INF         5814.5112      5997.4850          .          
+work-1.s82         -INF         5534.2643      5982.6464          .          
+work-1.s83         -INF         5884.2014      5884.2014         0.0500      
+work-1.s84         -INF         6067.4809      6067.4809         0.0500      
+work-1.s85         -INF         5698.9470      5959.9618          .          
+work-1.s86         -INF         5761.1512      5930.5286          .          
+work-1.s87         -INF         5967.5184      5968.4955          .          
+work-1.s88         -INF         5885.2287      5885.2287         0.0500      
+work-1.s89         -INF         5998.2302      6098.3683          .          
+work-1.s90         -INF         5966.7471      5966.7471         0.0500      
+work-1.s91         -INF         6054.9272      6054.9272         0.0500      
+work-1.s92         -INF         5967.4881      5967.4881         0.0500      
+work-1.s93         -INF         5984.5908      6143.1347          .          
+work-1.s94         -INF         5960.1565      5960.1565         0.0500      
+work-1.s95         -INF         5956.5299      5956.5299         0.0500      
+work-1.s96         -INF         5844.4935      5844.4935         0.0500      
+work-1.s97         -INF         5674.7333      5981.8631          .          
+work-1.s98         -INF         5934.1870      5934.1870         0.0500      
+work-1.s99         -INF         5588.1674      6105.4319          .          
+work-1.s100        -INF         6099.2101      6099.2101         0.0500      
+work-2.s1          -INF         3594.1026      3942.6910          .          
+work-2.s2          -INF         3364.1714      3954.6845          .          
+work-2.s3          -INF         3636.1788      4047.8852          .          
+work-2.s4          -INF         3801.1797      4010.7695          .          
+work-2.s5          -INF         3493.0530      3996.1448          .          
+work-2.s6          -INF         4015.4646      4015.4646         0.1000      
+work-2.s7          -INF         3668.3059      4006.7023          .          
+work-2.s8          -INF         3881.4306      4017.6999          .          
+work-2.s9          -INF         3638.2641      4086.4146          .          
+work-2.s10         -INF         3489.7668      3977.6682          .          
+work-2.s11         -INF         3858.1152      4051.9894          .          
+work-2.s12         -INF         3902.8219      3995.8664          .          
+work-2.s13         -INF         3473.6821      3968.9006          .          
+work-2.s14         -INF         3729.4468      3889.3924          .          
+work-2.s15         -INF         3767.0666      4037.7545          .          
+work-2.s16         -INF         3485.4848      4024.3233          .          
+work-2.s17         -INF         3482.3309      4017.4307          .          
+work-2.s18         -INF         3950.7210      3994.9174          .          
+work-2.s19         -INF         3563.5049      4057.3974          .          
+work-2.s20         -INF         3482.9399      3964.1625          .          
+work-2.s21         -INF         3447.1305      4006.5132          .          
+work-2.s22         -INF         3767.3723      3944.0356          .          
+work-2.s23         -INF         3486.2483      3988.2298          .          
+work-2.s24         -INF         3722.3017      3973.4619          .          
+work-2.s25         -INF         3849.9870      4037.5635          .          
+work-2.s26         -INF         3848.2251      3999.5028          .          
+work-2.s27         -INF         3398.8173      4054.8522          .          
+work-2.s28         -INF         3727.7218      4058.7310          .          
+work-2.s29         -INF         3820.1269      4015.0258          .          
+work-2.s30         -INF         3799.4419      3966.4187          .          
+work-2.s31         -INF         3517.5687      3970.9463          .          
+work-2.s32         -INF         3660.9547      4026.8438          .          
+work-2.s33         -INF         3552.7165      4029.3407          .          
+work-2.s34         -INF         3593.2903      4019.9563          .          
+work-2.s35         -INF         3707.0549      3976.1615          .          
+work-2.s36         -INF         3284.3303      4063.6418          .          
+work-2.s37         -INF         3941.2555      4031.1973          .          
+work-2.s38         -INF         3819.9236      4067.3995          .          
+work-2.s39         -INF         3681.3498      4044.2647          .          
+work-2.s40         -INF         3774.1849      4090.2002          .          
+work-2.s41         -INF         3120.7240      3959.6690          .          
+work-2.s42         -INF         3770.3750      4006.4536          .          
+work-2.s43         -INF         3134.6142      3968.3544          .          
+work-2.s44         -INF         3576.3014      3904.2617          .          
+work-2.s45         -INF         3353.4376      3982.1279          .          
+work-2.s46         -INF         3891.3100      3960.2168          .          
+work-2.s47         -INF         3442.3910      4113.9120          .          
+work-2.s48         -INF         3693.4049      4032.8119          .          
+work-2.s49         -INF         3423.6790      3947.9200          .          
+work-2.s50         -INF         3853.2188      3984.2375          .          
+work-2.s51         -INF         3711.6296      3968.9251          .          
+work-2.s52         -INF         3585.8717      4037.0219          .          
+work-2.s53         -INF         3632.3878      4029.9193          .          
+work-2.s54         -INF         3688.4676      4093.4176          .          
+work-2.s55         -INF         3389.2739      4053.3693          .          
+work-2.s56         -INF         4012.8728      4012.8728         0.0705      
+work-2.s57         -INF         3211.6142      4011.3869          .          
+work-2.s58         -INF         3574.9575      3925.2397          .          
+work-2.s59         -INF         3660.7492      4057.7291          .          
+work-2.s60         -INF         3644.5680      4042.8643          .          
+work-2.s61         -INF         3814.0094      4002.4287          .          
+work-2.s62         -INF         3543.7409      3859.2324          .          
+work-2.s63         -INF         3684.4668      4008.5989          .          
+work-2.s64         -INF         3630.8837      3952.2761          .          
+work-2.s65         -INF         3833.2342      4015.9681          .          
+work-2.s66         -INF         3738.8140      4000.6361          .          
+work-2.s67         -INF         3417.0162      4024.4808          .          
+work-2.s68         -INF         3642.2141      4040.5493          .          
+work-2.s69         -INF         3881.9516      4016.4388          .          
+work-2.s70         -INF         3616.1885      3959.9435          .          
+work-2.s71         -INF         3491.6007      3989.0051          .          
+work-2.s72         -INF         3747.0767      3979.6984          .          
+work-2.s73         -INF         3673.8547      4001.5713          .          
+work-2.s74         -INF         3312.5587      3920.8965          .          
+work-2.s75         -INF         3714.3791      3978.6832          .          
+work-2.s76         -INF         3506.1838      4043.3010          .          
+work-2.s77         -INF         3650.2134      4052.7056          .          
+work-2.s78         -INF         3117.7981      3967.4825          .          
+work-2.s79         -INF         3794.7985      3925.8967          .          
+work-2.s80         -INF         3822.0159      4005.3907          .          
+work-2.s81         -INF         3283.7941      3959.7182          .          
+work-2.s82         -INF         3702.7797      3938.4810          .          
+work-2.s83         -INF         3396.2862      3933.8163          .          
+work-2.s84         -INF         3335.5348      3963.3553          .          
+work-2.s85         -INF         3707.3052      3982.2525          .          
+work-2.s86         -INF         3376.7928      4056.3662          .          
+work-2.s87         -INF         3830.2099      3994.9401          .          
+work-2.s88         -INF         3157.2190      4038.5174          .          
+work-2.s89         -INF         3937.6539      3997.6316          .          
+work-2.s90         -INF         3176.8377      4046.0012          .          
+work-2.s91         -INF         3779.3080      4000.9974          .          
+work-2.s92         -INF         3708.3838      4043.3534          .          
+work-2.s93         -INF         3569.5089      3983.8373          .          
+work-2.s94         -INF         3726.8107      3981.3009          .          
+work-2.s95         -INF         3531.8789      4057.8260          .          
+work-2.s96         -INF         3962.3729      3962.3729         0.1000      
+work-2.s97         -INF         3696.1061      4005.1899          .          
+work-2.s98         -INF         3634.8253      4054.5619          .          
+work-2.s99         -INF         3594.6041      3966.3607          .          
+work-2.s100        -INF         3548.3020      3895.1702          .          
+
+                           LOWER          LEVEL          UPPER         MARGINAL
+
+---- VAR eprofit           -INF        18095.5665        +INF             .          
+
+  eprofit  expected profit
+
+---- VAR x  products sold
+
+               LOWER          LEVEL          UPPER         MARGINAL
+
+class-1          .          1417.6712        +INF             .          
+class-2          .              .            +INF           -5.2176      
+class-3          .              .            +INF           -2.7049      
+class-4          .            54.6331        +INF             .          
+
+---- VAR v  labor purchased
+
+                   LOWER          LEVEL          UPPER         MARGINAL
+
+work-1.s1            .              .            +INF           -0.0500      
+work-1.s2            .           781.6306        +INF             .          
+work-1.s3            .           329.8508        +INF             .          
+work-1.s4            .              .            +INF           -0.0500      
+work-1.s5            .              .            +INF           -0.0500      
+work-1.s6            .             5.4830        +INF             .          
+work-1.s7            .              .            +INF           -0.0500      
+work-1.s8            .           659.4178        +INF             .          
+work-1.s9            .              .            +INF           -0.0500      
+work-1.s10           .           246.3160        +INF             .          
+work-1.s11           .           748.4858        +INF             .          
+work-1.s12           .           145.1563        +INF             .          
+work-1.s13           .           869.6393        +INF             .          
+work-1.s14           .           636.0323        +INF             .          
+work-1.s15           .              .            +INF           -0.0500      
+work-1.s16           .           350.8611        +INF             .          
+work-1.s17           .              .            +INF           -0.0500      
+work-1.s18           .              .            +INF           -0.0500      
+work-1.s19           .           280.5638        +INF             .          
+work-1.s20           .           247.0580        +INF             .          
+work-1.s21           .            60.2893        +INF             .          
+work-1.s22           .              .            +INF           -0.0500      
+work-1.s23           .              .            +INF           -0.0500      
+work-1.s24           .              .            +INF           -0.0500      
+work-1.s25           .           301.8417        +INF             .          
+work-1.s26           .           640.8846        +INF             .          
+work-1.s27           .              .            +INF           -0.0500      
+work-1.s28           .           485.4556        +INF             .          
+work-1.s29           .           493.3918        +INF             .          
+work-1.s30           .            38.4377        +INF             .          
+work-1.s31           .              .            +INF           -0.0500      
+work-1.s32           .              .            +INF           -0.0132      
+work-1.s33           .              .            +INF           -0.0500      
+work-1.s34           .           755.7720        +INF             .          
+work-1.s35           .              .            +INF           -0.0500      
+work-1.s36           .              .            +INF           -0.0500      
+work-1.s37           .           213.4798        +INF             .          
+work-1.s38           .           524.9853        +INF             .          
+work-1.s39           .           376.5689        +INF             .          
+work-1.s40           .            52.6551        +INF             .          
+work-1.s41           .           221.2295        +INF             .          
+work-1.s42           .              .            +INF           -0.0500      
+work-1.s43           .              .            +INF           -0.0500      
+work-1.s44           .              .            +INF           -0.0500      
+work-1.s45           .              .            +INF           -0.0500      
+work-1.s46           .              .            +INF           -0.0500      
+work-1.s47           .           359.9256        +INF             .          
+work-1.s48           .           227.6289        +INF             .          
+work-1.s49           .           666.5356        +INF             .          
+work-1.s50           .            14.6659        +INF             .          
+work-1.s51           .           217.8454        +INF             .          
+work-1.s52           .           513.7771        +INF             .          
+work-1.s53           .           294.8959        +INF             .          
+work-1.s54           .           112.2167        +INF             .          
+work-1.s55           .              .            +INF           -0.0500      
+work-1.s56           .              .            +INF           -0.0500      
+work-1.s57           .           404.1286        +INF             .          
+work-1.s58           .           335.5045        +INF             .          
+work-1.s59           .              .            +INF           -0.0500      
+work-1.s60           .           599.6155        +INF             .          
+work-1.s61           .              .            +INF           -0.0500      
+work-1.s62           .              .            +INF           -0.0500      
+work-1.s63           .           375.5203        +INF             .          
+work-1.s64           .           553.2323        +INF             .          
+work-1.s65           .              .            +INF           -0.0500      
+work-1.s66           .              .            +INF           -0.0500      
+work-1.s67           .           338.2480        +INF             .          
+work-1.s68           .           352.8671        +INF             .          
+work-1.s69           .           167.7425        +INF             .          
+work-1.s70           .             0.5280        +INF             .          
+work-1.s71           .              .            +INF           -0.0500      
+work-1.s72           .              .            +INF           -0.0500      
+work-1.s73           .              .            +INF           -0.0500      
+work-1.s74           .           790.9143        +INF             .          
+work-1.s75           .            83.5710        +INF             .          
+work-1.s76           .           725.3012        +INF             .          
+work-1.s77           .              .            +INF           -0.0500      
+work-1.s78           .              .            +INF           -0.0500      
+work-1.s79           .           495.5532        +INF             .          
+work-1.s80           .              .            +INF           -0.0500      
+work-1.s81           .              .            +INF           -0.0500      
+work-1.s82           .              .            +INF           -0.0500      
+work-1.s83           .            42.3924        +INF             .          
+work-1.s84           .           150.9823        +INF             .          
+work-1.s85           .              .            +INF           -0.0500      
+work-1.s86           .              .            +INF           -0.0500      
+work-1.s87           .              .            +INF           -0.0500      
+work-1.s88           .            25.6084        +INF             .          
+work-1.s89           .              .            +INF           -0.0500      
+work-1.s90           .           889.7570        +INF             .          
+work-1.s91           .           816.4753        +INF             .          
+work-1.s92           .            72.9785        +INF             .          
+work-1.s93           .              .            +INF           -0.0500      
+work-1.s94           .           668.8823        +INF             .          
+work-1.s95           .           158.2822        +INF             .          
+work-1.s96           .           964.8028        +INF             .          
+work-1.s97           .              .            +INF           -0.0500      
+work-1.s98           .           640.4333        +INF             .          
+work-1.s99           .              .            +INF           -0.0500      
+work-1.s100          .           268.2691        +INF             .          
+work-2.s1            .              .            +INF           -0.1000      
+work-2.s2            .              .            +INF           -0.1000      
+work-2.s3            .              .            +INF           -0.1000      
+work-2.s4            .              .            +INF           -0.1000      
+work-2.s5            .              .            +INF           -0.1000      
+work-2.s6            .            66.9687        +INF             .          
+work-2.s7            .              .            +INF           -0.1000      
+work-2.s8            .              .            +INF           -0.1000      
+work-2.s9            .              .            +INF           -0.1000      
+work-2.s10           .              .            +INF           -0.1000      
+work-2.s11           .              .            +INF           -0.1000      
+work-2.s12           .              .            +INF           -0.1000      
+work-2.s13           .              .            +INF           -0.1000      
+work-2.s14           .              .            +INF           -0.1000      
+work-2.s15           .              .            +INF           -0.1000      
+work-2.s16           .              .            +INF           -0.1000      
+work-2.s17           .              .            +INF           -0.1000      
+work-2.s18           .              .            +INF           -0.1000      
+work-2.s19           .              .            +INF           -0.1000      
+work-2.s20           .              .            +INF           -0.1000      
+work-2.s21           .              .            +INF           -0.1000      
+work-2.s22           .              .            +INF           -0.1000      
+work-2.s23           .              .            +INF           -0.1000      
+work-2.s24           .              .            +INF           -0.1000      
+work-2.s25           .              .            +INF           -0.1000      
+work-2.s26           .              .            +INF           -0.1000      
+work-2.s27           .              .            +INF           -0.1000      
+work-2.s28           .              .            +INF           -0.1000      
+work-2.s29           .              .            +INF           -0.1000      
+work-2.s30           .              .            +INF           -0.1000      
+work-2.s31           .              .            +INF           -0.1000      
+work-2.s32           .              .            +INF           -0.1000      
+work-2.s33           .              .            +INF           -0.1000      
+work-2.s34           .              .            +INF           -0.1000      
+work-2.s35           .              .            +INF           -0.1000      
+work-2.s36           .              .            +INF           -0.1000      
+work-2.s37           .              .            +INF           -0.1000      
+work-2.s38           .              .            +INF           -0.1000      
+work-2.s39           .              .            +INF           -0.1000      
+work-2.s40           .              .            +INF           -0.1000      
+work-2.s41           .              .            +INF           -0.1000      
+work-2.s42           .              .            +INF           -0.1000      
+work-2.s43           .              .            +INF           -0.1000      
+work-2.s44           .              .            +INF           -0.1000      
+work-2.s45           .              .            +INF           -0.1000      
+work-2.s46           .              .            +INF           -0.1000      
+work-2.s47           .              .            +INF           -0.1000      
+work-2.s48           .              .            +INF           -0.1000      
+work-2.s49           .              .            +INF           -0.1000      
+work-2.s50           .              .            +INF           -0.1000      
+work-2.s51           .              .            +INF           -0.1000      
+work-2.s52           .              .            +INF           -0.1000      
+work-2.s53           .              .            +INF           -0.1000      
+work-2.s54           .              .            +INF           -0.1000      
+work-2.s55           .              .            +INF           -0.1000      
+work-2.s56           .              .            +INF           -0.0295      
+work-2.s57           .              .            +INF           -0.1000      
+work-2.s58           .              .            +INF           -0.1000      
+work-2.s59           .              .            +INF           -0.1000      
+work-2.s60           .              .            +INF           -0.1000      
+work-2.s61           .              .            +INF           -0.1000      
+work-2.s62           .              .            +INF           -0.1000      
+work-2.s63           .              .            +INF           -0.1000      
+work-2.s64           .              .            +INF           -0.1000      
+work-2.s65           .              .            +INF           -0.1000      
+work-2.s66           .              .            +INF           -0.1000      
+work-2.s67           .              .            +INF           -0.1000      
+work-2.s68           .              .            +INF           -0.1000      
+work-2.s69           .              .            +INF           -0.1000      
+work-2.s70           .              .            +INF           -0.1000      
+work-2.s71           .              .            +INF           -0.1000      
+work-2.s72           .              .            +INF           -0.1000      
+work-2.s73           .              .            +INF           -0.1000      
+work-2.s74           .              .            +INF           -0.1000      
+work-2.s75           .              .            +INF           -0.1000      
+work-2.s76           .              .            +INF           -0.1000      
+work-2.s77           .              .            +INF           -0.1000      
+work-2.s78           .              .            +INF           -0.1000      
+work-2.s79           .              .            +INF           -0.1000      
+work-2.s80           .              .            +INF           -0.1000      
+work-2.s81           .              .            +INF           -0.1000      
+work-2.s82           .              .            +INF           -0.1000      
+work-2.s83           .              .            +INF           -0.1000      
+work-2.s84           .              .            +INF           -0.1000      
+work-2.s85           .              .            +INF           -0.1000      
+work-2.s86           .              .            +INF           -0.1000      
+work-2.s87           .              .            +INF           -0.1000      
+work-2.s88           .              .            +INF           -0.1000      
+work-2.s89           .              .            +INF           -0.1000      
+work-2.s90           .              .            +INF           -0.1000      
+work-2.s91           .              .            +INF           -0.1000      
+work-2.s92           .              .            +INF           -0.1000      
+work-2.s93           .              .            +INF           -0.1000      
+work-2.s94           .              .            +INF           -0.1000      
+work-2.s95           .              .            +INF           -0.1000      
+work-2.s96           .            53.8838        +INF             .          
+work-2.s97           .              .            +INF           -0.1000      
+work-2.s98           .              .            +INF           -0.1000      
+work-2.s99           .              .            +INF           -0.1000      
+work-2.s100          .              .            +INF           -0.1000      
+
+
+**** REPORT SUMMARY :        0     NONOPT
+                             0 INFEASIBLE
+                             0  UNBOUNDED
+GAMS 30.1.0  re01a340 Released Jan 10, 2020 DEX-DEG x86 64bit/Mac OS X - 03/05/20 17:35:01 Page 6
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+E x e c u t i o n
+
+
+----     43 VARIABLE eprofit.L             =    18095.566  expected profit
+
+----     43 VARIABLE x.L  products sold
+
+class-1 1417.671,    class-4   54.633
+
+
+
+EXECUTION TIME       =        0.004 SECONDS      3 MB  30.1.0 re01a340 DEX-DEG
+
+
+USER: Course License Advanced Analytics with MathematG190618/0001AO-GEN
+      The University of Edinburgh - Business School               DCE66
+      License for teaching and research at degree granting institutions
+
+
+**** FILE SUMMARY
+
+Input      /Users/victor_medina/OneDrive - University of Edinburgh/Tutorials/BUST10134/wk7/tut_3_1_wk7.gms
+Output     /Users/victor_medina/OneDrive - University of Edinburgh/Tutorials/BUST10134/wk7/tut_3_1_wk7.lst

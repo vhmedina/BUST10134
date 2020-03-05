@@ -1,0 +1,70 @@
+--- Job tut_3_1_wk7.gms Start 03/05/20 17:31:52 30.1.0 re01a340 DEX-DEG x86 64bit/Mac OS X
+--- GAMS Parameters defined
+    Input /Users/victor_medina/OneDrive - University of Edinburgh/Tutorials/BUST10134/wk7/tut_3_1_wk7.gms
+    PageSize 0
+    ScrDir /Users/victor_medina/OneDrive - University of Edinburgh/Tutorials/BUST10134/wk7/225a/
+    SysDir /Applications/GAMS30.1/GAMS Terminal.app/Contents/MacOS/
+    LogOption 3
+    ErrMsg 1
+    ErrorLog 99
+    IDE 1
+    LstTitleLeftAligned 1
+GAMS 30.1.0   Copyright (C) 1987-2020 GAMS Development. All rights reserved
+Licensee: Course License Advanced Analytics with MathematG190618/0001AO-GEN
+          The University of Edinburgh - Business School               DCE66
+          Course license for use within the course and related course work
+--- Starting compilation
+--- tut_3_1_wk7.gms(43) 3 Mb
+--- Starting execution: elapsed 0:00:00.003
+--- tut_3_1_wk7.gms(22) 4 Mb
+--- Generating LP model mix
+--- tut_3_1_wk7.gms(41) 6 Mb
+---   2,001 rows  2,005 columns  12,005 non-zeroes
+--- Executing CPLEX: elapsed 0:00:00.046
+IBM ILOG CPLEX   30.1.0 re01a340 Released Jan 10, 2020 DEG x86 64bit/Mac OS X 
+--- GAMS/Cplex licensed for continuous and discrete problems.
+Cplex 12.10.0.0
+Reading data...
+Starting Cplex...
+Space for names approximately 0.09 Mb
+Use option 'names no' to turn use of names off
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
+CPXPARAM_Advance                                 0
+CPXPARAM_Threads                                 1
+CPXPARAM_Parallel                                1
+CPXPARAM_Simplex_Limits_Iterations               2000000000
+CPXPARAM_TimeLimit                               1000
+CPXPARAM_Tune_TimeLimit                          200
+Tried aggregator 1 time.
+LP Presolve eliminated 1 rows and 1 columns.
+Reduced LP has 2000 rows, 2004 columns, and 10000 nonzeros.
+Presolve time = 0.01 sec. (3.35 ticks)
+Iteration log . . .
+Iteration:     1   Scaled dual infeas =            53.741219
+Iteration:    97   Scaled dual infeas =            22.962285
+Iteration:   252   Scaled dual infeas =            16.567575
+Iteration:   425   Scaled dual infeas =             9.106268
+Iteration:   585   Scaled dual infeas =             1.901962
+Iteration:   631   Dual objective     =         19063.103090
+Iteration:   708   Dual objective     =         18789.662514
+Iteration:   785   Dual objective     =         18567.513294
+Iteration:   861   Dual objective     =         18371.027790
+Iteration:   937   Dual objective     =         18200.085853
+Iteration:  1013   Dual objective     =         18054.377502
+Iteration:  1090   Dual objective     =         17931.305026
+Iteration:  1166   Dual objective     =         17841.592034
+Iteration:  1241   Dual objective     =         17787.066449
+Iteration:  1316   Dual objective     =         17728.055196
+LP status(1): optimal
+Cplex Time: 0.04sec (det. 75.29 ticks)
+Optimal solution found.
+Objective :       17726.464773
+--- Restarting execution
+--- tut_3_1_wk7.gms(41) 2 Mb
+--- Reading solution for model mix
+--- tut_3_1_wk7.gms(41) 3 Mb
+--- Executing after solve: elapsed 0:00:00.178
+--- tut_3_1_wk7.gms(43) 4 Mb
+*** Status: Normal completion
+--- Job tut_3_1_wk7.gms Stop 03/05/20 17:31:52 elapsed 0:00:00.178
+

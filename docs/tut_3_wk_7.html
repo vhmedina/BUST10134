@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Mathematical Programming in Advanced Analytics</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Victor Medina-Olivares" />
+    <meta name="author" content="victor.medina@ed.ac.uk" />
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Mathematical Programming in Advanced Analytics
+## Tutorial 3, week 7
+### Victor Medina-Olivares
+### <a href="mailto:victor.medina@ed.ac.uk" class="email">victor.medina@ed.ac.uk</a>
+### 5 Mar 2020
+
+---
+
+# Stochastic Programming
+
+**Problem**&lt;sup&gt;[1](#myfootnote1)&lt;/sup&gt;
+
+- A furniture shop has 6000 human-hours available in the carpentry shop and 4000 human-hours in the finishing shop per period. All employees are on salary, however, and the actual human-hours available are assumed to be normally distributed random variables wiht deficits resulting from employee absences and surpluses due to voluntary overtime. 
+- There are four classes of products each consuming a certain number of human-hours in carpentry and finishing; the actual time consumed is assumed to be uniformly distributed random variable.
+- Each product earns a certain profit per item, and the shop has the option to purchase casual labor from outside. 
+- Note that the cost of the salaried labor is fixed, and thus does not enter the problem. 
+
+&lt;a name="myfootnote1"&gt;1&lt;/a&gt;: King, A J, Stochastic Programming Problems: Examples from the Literature.
+
+---
+# Data
+
+![](assets/data_sto.png)
+---
+# Formulation
+
+`$$\begin{aligned}\max_{x_j} &amp;\sum_{j=1}^4c_jx_j-E\{q_1v_1+q_2v_2\}\\&amp;\text{s.t.}\\&amp;\sum_{j=1}^4t_{kj}x_j \le v_k+h_k\quad k=1,2\\&amp;x_j\ge 0 \quad j = 1,2,3,4\\ &amp;v_k\ge 0 \quad k=1,2   \end{aligned}$$`
+where 
+- `\(x_j\)`: amount of product `\(j\)` produced
+- `\(v_k\)`: hours of casual labor required of type `\(k\)`
+- `\(c_j\)`: profit per unit of product `\(j\)`
+- `\(q_k\)`: cost per hour for casual labor of type `\(k\)`
+- `\(t_{kj}\)`: hours required of type `\(k\)` to produce product `\(j\)`
+- `\(h_k\)`: hours of salaried labor of type `\(k\)` available
+
+---
+# Solution
+
+- The GAMS code is in [code](https://github.com/vhmedina/BUST10134/blob/master/wk7/tut_3_1_wk7.gms)
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"self_contained": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
