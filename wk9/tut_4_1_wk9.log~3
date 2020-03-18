@@ -1,0 +1,26 @@
+--- Job tut_4_1_wk9.gms Start 03/18/20 14:05:17 30.1.0 re01a340 DEX-DEG x86 64bit/Mac OS X
+--- GAMS Parameters defined
+    Input /Users/victor_medina/OneDrive - University of Edinburgh/Tutorials/BUST10134/wk9/tut_4_1_wk9.gms
+    PageSize 0
+    ScrDir /Users/victor_medina/OneDrive - University of Edinburgh/Tutorials/BUST10134/wk9/225a/
+    SysDir /Applications/GAMS30.1/GAMS Terminal.app/Contents/MacOS/
+    LogOption 3
+    ErrMsg 1
+    ErrorLog 99
+    IDE 1
+    LstTitleLeftAligned 1
+GAMS 30.1.0   Copyright (C) 1987-2020 GAMS Development. All rights reserved
+Licensee: Course License Advanced Analytics with MathematG190618/0001AO-GEN
+          The University of Edinburgh - Business School               DCE66
+          Course license for use within the course and related course work
+--- Starting compilation
+--- tut_4_1_wk9.gms(6) 2 Mb 1 Error
+*** Error 140 in /Users/victor_medina/OneDrive - University of Edinburgh/Tutorials/BUST10134/wk9/tut_4_1_wk9.gms
+    Unknown symbol
+--- tut_4_1_wk9.gms(13) 2 Mb 2 Errors
+*** Error 257 in /Users/victor_medina/OneDrive - University of Edinburgh/Tutorials/BUST10134/wk9/tut_4_1_wk9.gms
+    Solve statement not checked because of previous errors
+--- tut_4_1_wk9.gms(13) 2 Mb 2 Errors
+*** Status: Compilation error(s)
+--- Job tut_4_1_wk9.gms Stop 03/18/20 14:05:17 elapsed 0:00:00.005
+

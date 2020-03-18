@@ -1,0 +1,19 @@
+B 3 C o m p i l a t i o n
+B 25 Equation Listing    SOLVE mip1 Using MIP From line 14
+D 28 of
+D 33 eq1
+D 38 eq2
+D 43 eq3
+B 49 Column Listing      SOLVE mip1 Using MIP From line 14
+E 52 x1
+E 61 x2
+E 70 z
+B 82 Model Statistics    SOLVE mip1 Using MIP From line 14
+B 98 Solution Report     SOLVE mip1 Using MIP From line 14
+F 137 of
+F 138 eq1
+F 139 eq2
+F 140 eq3
+G 144 x1
+G 145 x2
+G 146 z

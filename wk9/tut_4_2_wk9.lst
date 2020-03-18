@@ -1,0 +1,158 @@
+GAMS 30.1.0  re01a340 Released Jan 10, 2020 DEX-DEG x86 64bit/Mac OS X - 03/18/20 14:21:29 Page 1
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+C o m p i l a t i o n
+
+
+   1  ** Problem 3, tut 4, week 9
+   2  Integer variables x1,x2;
+   3  Free variable z;
+   4   
+   5  equations of, eq1, eq2;
+   6   
+   7  of..    z =e= 2*x1 + 3*x2;
+   8  eq1..   x1 + x2 =g= 3;
+   9  eq2..   x1 + 3*x2 =g= 6;
+  10   
+  11  Model mip2 /all/;
+  12   
+  13  Solve mip2 using MIP minimizing z;
+
+
+COMPILATION TIME     =        0.000 SECONDS      2 MB  30.1.0 re01a340 DEX-DEG
+GAMS 30.1.0  re01a340 Released Jan 10, 2020 DEX-DEG x86 64bit/Mac OS X - 03/18/20 14:21:29 Page 2
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Equation Listing    SOLVE mip2 Using MIP From line 13
+
+
+---- of  =E=  
+
+of..  - 2*x1 - 3*x2 + z =E= 0 ; (LHS = 0)
+     
+
+---- eq1  =G=  
+
+eq1..  x1 + x2 =G= 3 ; (LHS = 0, INFES = 3 ****)
+     
+
+---- eq2  =G=  
+
+eq2..  x1 + 3*x2 =G= 6 ; (LHS = 0, INFES = 6 ****)
+     
+GAMS 30.1.0  re01a340 Released Jan 10, 2020 DEX-DEG x86 64bit/Mac OS X - 03/18/20 14:21:29 Page 3
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Column Listing      SOLVE mip2 Using MIP From line 13
+
+
+---- x1  
+
+x1
+                (.LO, .L, .UP, .M = 0, 0, 100, 0)
+       -2       of
+        1       eq1
+        1       eq2
+
+
+---- x2  
+
+x2
+                (.LO, .L, .UP, .M = 0, 0, 100, 0)
+       -3       of
+        1       eq1
+        3       eq2
+
+
+---- z  
+
+z
+                (.LO, .L, .UP, .M = -INF, 0, +INF, 0)
+        1       of
+
+
+****
+****  2 Integer +INF Bounds have been reset to 100 (see Option IntVarUp)
+****
+GAMS 30.1.0  re01a340 Released Jan 10, 2020 DEX-DEG x86 64bit/Mac OS X - 03/18/20 14:21:29 Page 4
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Model Statistics    SOLVE mip2 Using MIP From line 13
+
+
+MODEL STATISTICS
+
+BLOCKS OF EQUATIONS           3     SINGLE EQUATIONS            3
+BLOCKS OF VARIABLES           3     SINGLE VARIABLES            3
+NON ZERO ELEMENTS             7     DISCRETE VARIABLES          2
+
+
+GENERATION TIME      =        0.008 SECONDS      3 MB  30.1.0 re01a340 DEX-DEG
+
+
+EXECUTION TIME       =        0.008 SECONDS      3 MB  30.1.0 re01a340 DEX-DEG
+GAMS 30.1.0  re01a340 Released Jan 10, 2020 DEX-DEG x86 64bit/Mac OS X - 03/18/20 14:21:29 Page 5
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE mip2 Using MIP From line 13
+
+
+               S O L V E      S U M M A R Y
+
+     MODEL   mip2                OBJECTIVE  z
+     TYPE    MIP                 DIRECTION  MINIMIZE
+     SOLVER  CPLEX               FROM LINE  13
+
+**** SOLVER STATUS     1 Normal Completion         
+**** MODEL STATUS      1 Optimal                   
+**** OBJECTIVE VALUE                8.0000
+
+ RESOURCE USAGE, LIMIT          0.014      1000.000
+ ITERATION COUNT, LIMIT         2    2000000000
+
+IBM ILOG CPLEX   30.1.0 re01a340 Released Jan 10, 2020 DEG x86 64bit/Mac OS X 
+--- GAMS/Cplex licensed for continuous and discrete problems.
+Cplex 12.10.0.0
+
+Space for names approximately 0.00 Mb
+Use option 'names no' to turn use of names off
+MIP status(101): integer optimal solution
+Cplex Time: 0.01sec (det. 0.01 ticks)
+Fixing integer variables, and solving final LP...
+Fixed MIP status(1): optimal
+Cplex Time: 0.00sec (det. 0.00 ticks)
+Proven optimal solution.
+
+MIP Solution:            8.000000    (2 iterations, 0 nodes)
+Final Solve:             8.000000    (0 iterations)
+
+Best possible:           8.000000
+Absolute gap:            0.000000
+Relative gap:            0.000000
+
+
+                           LOWER          LEVEL          UPPER         MARGINAL
+
+---- EQU of                  .              .              .             1.0000      
+---- EQU eq1                3.0000         3.0000        +INF             .          
+---- EQU eq2                6.0000         7.0000        +INF             .          
+
+                           LOWER          LEVEL          UPPER         MARGINAL
+
+---- VAR x1                  .             1.0000       100.0000         2.0000      
+---- VAR x2                  .             2.0000       100.0000         3.0000      
+---- VAR z                 -INF            8.0000        +INF             .          
+
+
+**** REPORT SUMMARY :        0     NONOPT
+                             0 INFEASIBLE
+                             0  UNBOUNDED
+
+
+EXECUTION TIME       =        0.002 SECONDS      2 MB  30.1.0 re01a340 DEX-DEG
+
+
+USER: Course License Advanced Analytics with MathematG190618/0001AO-GEN
+      The University of Edinburgh - Business School               DCE66
+      License for teaching and research at degree granting institutions
+
+
+**** FILE SUMMARY
+
+Input      /Users/victor_medina/OneDrive - University of Edinburgh/Tutorials/BUST10134/wk9/tut_4_2_wk9.gms
+Output     /Users/victor_medina/OneDrive - University of Edinburgh/Tutorials/BUST10134/wk9/tut_4_2_wk9.lst

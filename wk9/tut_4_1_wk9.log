@@ -1,0 +1,92 @@
+--- Job tut_4_1_wk9.gms Start 03/18/20 14:09:04 30.1.0 re01a340 DEX-DEG x86 64bit/Mac OS X
+--- GAMS Parameters defined
+    Input /Users/victor_medina/OneDrive - University of Edinburgh/Tutorials/BUST10134/wk9/tut_4_1_wk9.gms
+    PageSize 0
+    ScrDir /Users/victor_medina/OneDrive - University of Edinburgh/Tutorials/BUST10134/wk9/225a/
+    SysDir /Applications/GAMS30.1/GAMS Terminal.app/Contents/MacOS/
+    LogOption 3
+    ErrMsg 1
+    ErrorLog 99
+    IDE 1
+    LstTitleLeftAligned 1
+GAMS 30.1.0   Copyright (C) 1987-2020 GAMS Development. All rights reserved
+Licensee: Course License Advanced Analytics with MathematG190618/0001AO-GEN
+          The University of Edinburgh - Business School               DCE66
+          Course license for use within the course and related course work
+--- Starting compilation
+--- tut_4_1_wk9.gms(14) 2 Mb
+--- Starting execution: elapsed 0:00:00.003
+--- Generating MIP model mip1
+--- tut_4_1_wk9.gms(14) 3 Mb
+---   4 rows  3 columns  7 non-zeroes
+---   2 discrete-columns
+***
+***   2 Integer +INF Bounds have been reset to 100 (see Option IntVarUp)
+***
+--- Executing CPLEX: elapsed 0:00:00.008
+IBM ILOG CPLEX   30.1.0 re01a340 Released Jan 10, 2020 DEG x86 64bit/Mac OS X 
+--- GAMS/Cplex licensed for continuous and discrete problems.
+Cplex 12.10.0.0
+Reading data...
+Starting Cplex...
+Space for names approximately 0.00 Mb
+Use option 'names no' to turn use of names off
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
+CPXPARAM_Advance                                 0
+CPXPARAM_Simplex_Display                         2
+CPXPARAM_Threads                                 1
+CPXPARAM_Parallel                                1
+CPXPARAM_MIP_Display                             4
+CPXPARAM_Simplex_Limits_Iterations               2000000000
+CPXPARAM_TimeLimit                               1000
+CPXPARAM_Tune_TimeLimit                          200
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+CPXPARAM_MIP_Tolerances_MIPGap                   0.10000000000000001
+CPXPARAM_WorkDir                                 "/Users/victor_medina/OneDrive - University of Edinburgh/Tutorials/BUST10134/wk9/225a/"
+Found incumbent of value -3.000000 after 0.00 sec. (0.00 ticks)
+Tried aggregator 2 times.
+MIP Presolve eliminated 4 rows and 3 columns.
+MIP Presolve added 1 rows and 1 columns.
+MIP Presolve modified 3 coefficients.
+Aggregator did 1 substitutions.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.01 ticks)
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.01 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.01 ticks)
+MIP status(101): integer optimal solution
+Cplex Time: 0.00sec (det. 0.01 ticks)
+Fixing integer variables, and solving final LP...
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
+CPXPARAM_Advance                                 2
+CPXPARAM_Simplex_Display                         2
+CPXPARAM_Threads                                 1
+CPXPARAM_Parallel                                1
+CPXPARAM_MIP_Display                             4
+CPXPARAM_Simplex_Limits_Iterations               2000000000
+CPXPARAM_TimeLimit                               1000
+CPXPARAM_Tune_TimeLimit                          200
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+CPXPARAM_MIP_Tolerances_MIPGap                   0.10000000000000001
+CPXPARAM_WorkDir                                 "/Users/victor_medina/OneDrive - University of Edinburgh/Tutorials/BUST10134/wk9/225a/"
+Tried aggregator 1 time.
+LP Presolve eliminated 4 rows and 3 columns.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.00 ticks)
+Fixed MIP status(1): optimal
+Cplex Time: 0.00sec (det. 0.00 ticks)
+Proven optimal solution.
+MIP Solution:           -1.000000    (0 iterations, 0 nodes)
+Final Solve:            -1.000000    (0 iterations)
+Best possible:          -1.000000
+Absolute gap:            0.000000
+Relative gap:            0.000000
+--- Restarting execution
+--- tut_4_1_wk9.gms(14) 2 Mb
+--- Reading solution for model mip1
+*** Status: Normal completion
+--- Job tut_4_1_wk9.gms Stop 03/18/20 14:09:04 elapsed 0:00:00.054
+

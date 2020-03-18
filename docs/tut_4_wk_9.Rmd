@@ -1,0 +1,147 @@
+---
+title: "Mathematical Programming in Advanced Analytics"
+subtitle: "Tutorial 4, week 9"
+author: 
+  - "Victor Medina-Olivares"
+  - "victor.medina@ed.ac.uk"
+date: "19 Mar 2020"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      self_contained: true
+---
+# Branch-and-Bound<sup>[1](#myfootnote1)</sup>
+
+- Some business problems can be solved only if variables have integer values.  
+- Type of integer programmes
+
+![](assets/types_int.png)
+
+
+<a name="myfootnote1">1</a>: based in Douglas Alem's lectures.
+---
+## Solution methods
+General algorithms for fall into three main categories:
+
+1. Enumeration Algorithms, which are based on intelligent enumeration of all possible solutions (Branch & Bound). $\rightarrow$ **today's tutorial**
+2. Cutting-plane Algorithms, which are derived from the simplex algorithm.
+3. Hybrids; e.g., Branch-and-Cut (B&C).
+
+## Branch-and-Bound (B&B)
+- B&B is a solution strategy based on the “divide & conquer” principle. 
+- The idea is to partition the feasible region of an IP into more manageable subdivisions & then to further partition the subdivisions, if necessary.
+- This partitioning process of the solution space is referred to as the branching process.
+- In order to avoid unnecessary branching, a bounding scheme is used.
+- In general, there are several ways to design both the branching process and the bounding scheme; consequently, there are several B&B algorithms.
+
+---
+## Example
+ILP
+$$\begin{aligned}\max & z = 3x_1 +4x_2\\\text{s.t.}&\\&2x_1+x_2\le 6\\&2x_1+3x_2 \le 9\\&x_1,x_2 \ge 0 \in \mathcal I\end{aligned}$$
+ILP relaxation $\text{(LP}_1\text{)}$
+$$\begin{aligned}\max & z = 3x_1 +4x_2\\\text{s.t.}&\\&2x_1+x_2\le 6\\&2x_1+3x_2 \le 9\\&x_1,x_2 \ge 0 \end{aligned}$$
+- Initialize LB on z to $-\infty$ and UB to 12.75 with $x = (2.25, 1.5)$. Now, we branch on $x_2$ as it is farther from an integer value than $x_1$.
+---
+## Example
+
+![](assets/ex_bb_1.png)
+
+---
+## Example
+
+![](assets/ex_bb_2.png)
+
+---
+## Example
+
+![](assets/ex_bb_3.png)
+---
+## Example
+
+![](assets/ex_bb_4.png)
+Branching can continue from either $LP_2$ (z = 11.5) or $LP_4$ (z = 12.33). Choose $LP_4$ as it has the largest z-value. 
+---
+## Example
+
+![](assets/ex_bb_5.png)
+---
+## Example
+.pull-left[
+![](assets/ex_bb_6.png)
+]
+.pull-right[
+- This is an integral solution and hence becomes a lower bound for the problem (LB = 11) $\rightarrow$ **incumbent solution**.
+
+- Any problem yielding a z-value smaller than LB will be eliminated.
+]
+---
+## Example
+![](assets/ex_bb_7.png)
+---
+## Example
+.pull-left[
+- This is a better integral solution
+
+- Therefore, the LB is updated to LB = 12
+
+- Any problem yielding a z-value smaller than LB will be eliminated, i.e., $LP_2$ and $LP_6$ are killed!
+
+]
+.pull-right[
+![](assets/ex_bb_8.png)
+]
+
+---
+## Example
+
+![](assets/ex_bb_9.png)
+
+---
+## Branch-and-Bound tree
+
+![](assets/ex_bb_10.png)
+---
+# Banch-and-Bound
+
+- When an LP solution contains several fractional integer variables, the decision of which integer variable to branch on next is needed.
+- The following rules are commonly used for choosing a branching variable:
+  - Variable with fractional value closest to 0.5
+  - Variable with highest impact on objective function.
+  - Variable with the least index.
+
+- A decision is also needed as to which unpruned node to explore first. In fact, the selection of the branching node strategy could have a substantial impact on a B&B algorithm’s computational requirements
+- The most commonly used search strategies include:
+  - A **depth-first search strategy** consists of choosing an active node amongst the most recent descendants.
+  - A **best-node first strategy** consists of choosing an active node with the best dual bound.
+  - In practice, **hybrid strategies** are commonly used; e.g., depth-first until feasible solution is found followed by a mix of best-node first and depth-first.
+
+---
+## Problem 1
+Solve the following MIP problem with B&B algorithm
+
+![](assets/p1_bb.png)
+
+---
+## Problem 2
+Consider the following IP problem
+
+![](assets/p2_bb.png)
+1. Solve this problem graphially
+2. Use B&B. For each subproblem, solve its LP relaxation graphically. 
+3. Use GAMS to solve it
+
+---
+## Problem 3
+Consider the following IP problem
+
+![](assets/p3_bb.png)
+1. Solve this problem graphially
+2. Use B&B. For each subproblem, solve its LP relaxation graphically. 
+3. Use GAMS to solve it
+
+
+
