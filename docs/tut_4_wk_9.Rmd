@@ -22,7 +22,7 @@ output:
 ![](assets/types_int.png)
 
 
-<a name="myfootnote1">1</a>: based in Douglas Alem's lectures.
+<a name="myfootnote1">1</a>: based on Douglas Alem's lectures.
 ---
 ## Solution methods
 General algorithms for fall into three main categories:
@@ -143,5 +143,11 @@ Consider the following IP problem
 2. Use B&B. For each subproblem, solve its LP relaxation graphically. 
 3. Use GAMS to solve it
 
+---
+## Solutions
 
+Problem 1 in the [link](https://github.com/vhmedina/BUST10134/blob/master/wk9/p1_sol.pdf)
 
+Problem 2 in the [link](https://github.com/vhmedina/BUST10134/blob/master/wk9/p2_sol.pdf) and the code [here](https://github.com/vhmedina/BUST10134/blob/master/wk9/tut_4_1_wk9.gms) 
+
+Problem 3 in the [link](https://github.com/vhmedina/BUST10134/blob/master/wk9/p3_sol.pdf) and the code [here](https://github.com/vhmedina/BUST10134/blob/master/wk9/tut_4_2_wk9.gms)
