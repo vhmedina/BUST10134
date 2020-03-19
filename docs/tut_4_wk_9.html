@@ -127,6 +127,20 @@ Branching can continue from either `\(LP_2\)` (z = 11.5) or `\(LP_4\)` (z = 12.3
   - In practice, **hybrid strategies** are commonly used; e.g., depth-first until feasible solution is found followed by a mix of best-node first and depth-first.
 
 ---
+## MIP in GAMS
+
+We know that we could solve each of the LP problems in GAMS with `lp` command
+
+`solve model_name using lp maximizing z;` 
+
+as in the example [here](https://github.com/vhmedina/BUST10134/blob/master/wk9/ex_1_wk9.gms)
+
+Or, by simply introducing `mip` command
+
+`solve model_name using mip maximizing z;`
+
+as in the example [here](https://github.com/vhmedina/BUST10134/blob/master/wk9/ex_2_wk9.gms)
+---
 ## Problem 1
 Solve the following MIP problem with B&amp;B algorithm
 
@@ -153,11 +167,14 @@ Consider the following IP problem
 ---
 ## Solutions
 
-Problem 1 in the [link](https://github.com/vhmedina/BUST10134/blob/master/wk9/p1_sol.pdf)
+The solutions of the problems are in the [link](https://github.com/vhmedina/BUST10134/blob/master/wk9/sol_wk9.pdf)
 
-Problem 2 in the [link](https://github.com/vhmedina/BUST10134/blob/master/wk9/p2_sol.pdf) and the code [here](https://github.com/vhmedina/BUST10134/blob/master/wk9/tut_4_1_wk9.gms) 
+Codes for problems 2 and 3 are  [here](https://github.com/vhmedina/BUST10134/blob/master/wk9/tut_4_1_wk9.gms) and [here](https://github.com/vhmedina/BUST10134/blob/master/wk9/tut_4_2_wk9.gms), respectively.
 
-Problem 3 in the [link](https://github.com/vhmedina/BUST10134/blob/master/wk9/p3_sol.pdf) and the code [here](https://github.com/vhmedina/BUST10134/blob/master/wk9/tut_4_2_wk9.gms)
+
+&amp;nbsp;
+
+*Take care and protect the vulnerable!*
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

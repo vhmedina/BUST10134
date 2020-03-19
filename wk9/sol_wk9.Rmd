@@ -1,0 +1,31 @@
+---
+title: "Solutions tutorial 4, week 9"
+author: "BUST10134"
+date: "19/03/2020"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Problem 1
+
+![](sol1_1.png)
+![](sol1_2.png)
+![](sol1_3.png)
+![](sol1_4.png)
+![](sol1_5.png)
+![](sol1_6.png)
+![](sol1_7.png)
+![](sol1_8.png)
+![](sol1_9.png)
+
+## Problem 2
+
+![](sol2.png)
+
+## Problem 3
+
+![](sol3_1.png)
+![](sol3_2.png)
